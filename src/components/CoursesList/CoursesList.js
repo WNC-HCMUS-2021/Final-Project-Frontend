@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import "./CoursesList.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faCartPlus, faStarHalfAlt, faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faStarHalfAlt, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 
 const CoursesList = () => {
   return (

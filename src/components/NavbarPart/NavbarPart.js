@@ -19,21 +19,21 @@ const NavbarPart = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Form inline>  
-          <FormControl type="text" placeholder="Search for anything" className="mr-sm-5" />   
-        </Form>
+            <FormControl type="text" placeholder="Search for anything" className="mr-sm-7" />   
+          </Form>
           <Nav className="ml-auto">
-          <Nav.Link
+            <Nav.Link
               className="mr-3">
               Home
-              </Nav.Link>
+            </Nav.Link>
             <Nav.Link
               className="mr-3">
               Our Team
-              </Nav.Link>
-              <Nav.Link
+            </Nav.Link>
+            <Nav.Link
               className="mr-3">
               Blog
-              </Nav.Link>
+            </Nav.Link>
             <Nav.Link
               className="mr-2"
               href="#">
@@ -46,14 +46,12 @@ const NavbarPart = () => {
             <Nav.Link
               className="mr-3"
               href="#link">
-            <Button
+              <Button
                 className="pl-5 pr-5"
                 variant="dark">
                 SignUp
                 </Button>
-              </Nav.Link>
-
-
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
