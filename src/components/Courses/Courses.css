@@ -1,39 +1,39 @@
-.card-container{
+.card-container-course{
   float:left;
 }
-.card{
+.card-course{
   width: 258px;
   height: 480px;
   margin: 15px 0px;
   padding-bottom: 10px;
   box-shadow: 3px 3px 5px 6px #ccc;
 }
-.card-title{
+.card-title-course{
   text-align: center;
 }
-.instructor{
+.instructor-course{
   text-align:center;
   font-weight: bold;
 }
-.price{
+.price-course{
   font-weight:bold;
 }
-.duration,.level{
+.duration-course,.level-course{
   font-weight: 600;
   color:gray;
 }
-.star-icon,.rating{
+.star-icon-course,.rating-course{
   color:#EB8A2F;
   font-weight:bold;
 }
-.student{
+.student-course{
   float:right;
 }
-.badge{
+.badge-course{
   background-color: #FFE799;
   color:rgb(27, 25, 25);
 }
-.enroll{
+.enroll-course{
   width: 50%;
   margin: auto;
   border-radius: 25px;

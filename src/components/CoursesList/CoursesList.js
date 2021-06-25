@@ -72,11 +72,11 @@ const CoursesList = () => {
                             <b>Best-seller</b>
                         </button>
                     </Col>
-                    <Col className="price">
-                        <div className="price-discount">
+                    <Col className="price-course-list">
+                        <div className="price-discount-course-list">
                             $139.99
                         </div>
-                        <div className="price-original">
+                        <div className="price-original-course-list">
                             $199.99
                         </div>
                     </Col>
@@ -147,11 +147,11 @@ const CoursesList = () => {
                             
                         </div>
                     </Col>
-                    <Col className="price">
-                        <div className="price-discount">
+                    <Col className="price-course-list">
+                        <div className="price-discount-course-list">
                             $139.99
                         </div>
-                        <div className="price-original">
+                        <div className="price-original-course-list">
                             $199.99
                         </div>
                     </Col>
@@ -226,8 +226,8 @@ const CoursesList = () => {
                             <b>Hot & New</b>
                         </button>
                     </Col>
-                    <Col className="price">
-                        <div className="price-discount">
+                    <Col className="price-course-list">
+                        <div className="price-discount-course-list">
                             $139.99
                         </div>
                     </Col>

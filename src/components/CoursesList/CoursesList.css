@@ -15,14 +15,14 @@
     font-weight: 300;
     color:gray;
   }
-  .price{
+  .price-course-list{
     text-align: center;
     /* font-weight:bold; */
   }
-  .price-discount{
+  .price-discount-course-list{
     font-weight:bold;
   }
-  .price-original{
+  .price-original-course-list{
     text-decoration: line-through;
   }
   .duration,.level{
