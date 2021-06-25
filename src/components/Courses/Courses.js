@@ -2,6 +2,7 @@ import React from 'react';
 import './Courses.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faCartPlus, faStarHalfAlt, faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const Courses = () => {
   return (
@@ -10,12 +11,16 @@ const Courses = () => {
       <div className="col-md-3 card-container-course text-left mb-5" >
         <div className="card-course">
           <div className="card-body">
-            <h5 className="card-title-course">
-              React with Redux
-            </h5>
-            <img className="card-img"
-              src="https://i.ibb.co/ch8dHPv/4.jpg"
-              alt="" />
+            <Link to="/coursedetail" style={{ color: 'black' }}>
+              <h5 className="card-title-course">
+                React with Redux
+              </h5>
+            </Link>
+            <Link to="/coursedetail">
+              <img className="card-img"
+                src="https://i.ibb.co/ch8dHPv/4.jpg"
+                alt="" />
+            </Link>
             <div className="card-text">
               <p className="instructor-course">
                 <FontAwesomeIcon
@@ -68,8 +73,9 @@ const Courses = () => {
             type="button"
           >
             <FontAwesomeIcon
+              className="mt-1"
               icon={faCartPlus} />
-              Add To Cart
+              <span className="ml-1">Add To Cart</span>
           </button>
         </div>
       </div>

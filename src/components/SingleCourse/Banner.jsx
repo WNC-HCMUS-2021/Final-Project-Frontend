@@ -110,7 +110,7 @@ function Banner() {
             >
               <FontAwesomeIcon
                 icon={faCartPlus} />
-                Add To Cart
+                <span className="ml-1">Add To Cart</span>
             </button>
           </div>
         </div>

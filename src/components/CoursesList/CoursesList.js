@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import "./CoursesList.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faStarHalfAlt, faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const CoursesList = () => {
   return (
@@ -13,15 +14,19 @@ const CoursesList = () => {
                     <Row>
                     <Col>
                         {/* <Image src="https://i.ibb.co/ch8dHPv/4.jpg" thumbnail /> */}
-                        <img className="card-img"
-                            src="https://i.ibb.co/85Ssw1y/1.png"
-                            alt="" />
+                        <Link to="/coursedetail">
+                            <img className="card-img"
+                                src="https://i.ibb.co/85Ssw1y/1.png"
+                                alt="" />
+                        </Link>
                     </Col>
                     <Col xs={6} style={{textAlign: "left"}}>
                         <div>
+                            <Link to="/coursedetail" style={{ color: 'black' }}>
                             <b className="card-title">
                                 React with Redux
                             </b>
+                            </Link>
                         </div>
                         <div className="short-description">
                             A practical programming course for office workers, academics, and administrators who want to improve their productivity.
@@ -91,16 +96,19 @@ const CoursesList = () => {
                 <div className="card-body">
                     <Row>
                     <Col>
-                        {/* <Image src="https://i.ibb.co/ch8dHPv/4.jpg" thumbnail /> */}
-                        <img className="card-img"
-                            src="https://i.ibb.co/85Ssw1y/1.png"
-                            alt="" />
+                        <Link to="/coursedetail">
+                            <img className="card-img"
+                                src="https://i.ibb.co/85Ssw1y/1.png"
+                                alt="" />
+                        </Link>
                     </Col>
                     <Col xs={6} style={{textAlign: "left"}}>
                         <div>
-                            <b className="card-title">
-                                React with Redux
-                            </b>
+                            <Link to="/coursedetail" style={{ color: 'black' }}>
+                                <b className="card-title">
+                                    React with Redux
+                                </b>
+                            </Link>
                         </div>
                         <div className="short-description">
                             A practical programming course for office workers, academics, and administrators who want to improve their productivity.
@@ -167,15 +175,19 @@ const CoursesList = () => {
                     <Row>
                     <Col>
                         {/* <Image src="https://i.ibb.co/ch8dHPv/4.jpg" thumbnail /> */}
-                        <img className="card-img"
-                            src="https://i.ibb.co/85Ssw1y/1.png"
-                            alt="" />
+                        <Link to="/coursedetail">
+                            <img className="card-img"
+                                src="https://i.ibb.co/85Ssw1y/1.png"
+                                alt="" />
+                        </Link>
                     </Col>
                     <Col xs={6} style={{textAlign: "left"}}>
                         <div>
-                            <b className="card-title">
-                                React with Redux
-                            </b>
+                            <Link to="/coursedetail" style={{ color: 'black' }}>
+                                <b className="card-title">
+                                    React with Redux
+                                </b>
+                            </Link>
                         </div>
                         <div className="short-description">
                             A Unique Interactive Python Experience With Nearly 200 Exercises.
