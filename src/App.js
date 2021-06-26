@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import Login from './pages/Login';
 import Signup from "./pages/Signup";
+import CourseVideoPage from './pages/CourseVideoPage';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
 					</Route>
           			<Route exact path="/coursedetail">
 						<CourseDetail />
+					</Route>
+					<Route exact path="/coursevideo">
+						<CourseVideoPage />
 					</Route>
           			<Route exact path="/login">
 						<Login />
