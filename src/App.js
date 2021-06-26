@@ -10,6 +10,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -21,8 +22,11 @@ function App() {
 					<Route exact path="/coursesearch">
 						<CourseSearch />
 					</Route>
-          <Route exact path="/coursedetail">
+          			<Route exact path="/coursedetail">
 						<CourseDetail />
+					</Route>
+          			<Route exact path="/login">
+						<Login />
 					</Route>
 					<Route exact path="/">
 						<Home />

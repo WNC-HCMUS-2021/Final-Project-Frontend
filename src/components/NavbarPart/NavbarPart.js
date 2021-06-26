@@ -42,15 +42,15 @@ const NavbarPart = () => {
               className="mr-3">
               Dashboard
             </Nav.Link>
-            <Nav.Link
-              className="mr-2"
-              href="#">
+            <Nav.Link className="mr-2">
+              <Link to="/login">
                <Button
                 className="pl-5 pr-5"
                 variant="outline-secondary">
-                Login
+                    Login
                 </Button>
-              </Nav.Link>
+              </Link>
+            </Nav.Link>
             <Nav.Link
               className="mr-3"
               href="#link">
