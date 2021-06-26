@@ -51,14 +51,14 @@ const NavbarPart = () => {
                 </Button>
               </Link>
             </Nav.Link>
-            <Nav.Link
-              className="mr-3"
-              href="#link">
-              <Button
-                className="pl-5 pr-5"
-                variant="dark">
-                SignUp
+            <Nav.Link className="mr-3">
+              <Link to="/signup">
+                <Button
+                  className="pl-5 pr-5"
+                  variant="dark">
+                  SignUp
                 </Button>
+              </Link>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
