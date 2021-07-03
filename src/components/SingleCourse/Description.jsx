@@ -3,7 +3,7 @@ import React from "react";
 import { Container, Row } from "react-bootstrap";
 import CourseMap from "./CourseMap";
 
-export default function Description() {
+export default function Description({academy}) {
   return (
     <Container className="mt-3" style={{textAlign: "left"}}>
       <Row>
@@ -14,7 +14,7 @@ export default function Description() {
                 Course Details: 
               </h3>
             </div>
-            Aprende sobre la libreria mas popular para hacer interfaces de usuario en la web Aprende sobre la libreria mas popular para hacer interfaces de usuario en la web Aprende sobre la libreria mas popular para hacer interfaces de usuario en la web Aprende sobre la libreria mas popular para hacer interfaces de usuario en la web Aprende sobre la libreria mas popular para hacer interfaces de usuario en la web Aprende sobre la libreria mas popular para hacer interfaces de usuario en la web Aprende sobre la libreria mas popular para hacer interfaces de usuario en la web Aprende sobre la libreria mas popular para hacer interfaces de usuario en la web Aprende sobre la libreria mas popular para hacer interfaces de usuario en la web Aprende sobre la libreria mas popular para hacer interfaces de usuario en la web Aprende sobre la libreria mas popular para hacer interfaces de usuario en la web
+            {academy.description_detail}
           </>
         </div>
 

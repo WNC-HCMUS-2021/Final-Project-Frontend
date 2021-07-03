@@ -93,16 +93,16 @@ function Banner({academy}) {
               className="star-icon"
               icon={faStarHalfAlt} />
               <span className="student-course-detail">
-              (300899)
+              ({academy.register})
               </span>
             </div>
 
             <div className="price">
               <span className="price-discount">
-                  $139.99
+                  {`$${academy.price_discount}`}
               </span>
               <span className="price-original">
-                  $199.99
+              {`$${academy.price}`}
               </span>
             </div>
             

@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import SingleCourse from "../components/SingleCourse";
-import data from "../data";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import { detailsAcademy } from "../components/actions/academyActions";
 
 
 function CourseDetail(props) {
-    const academy = data.accademys.find(x => x.academy_id.toString() === props.match.params.id);
-    console.log(props);
+    const dispatch = useDispatch();
+    const academyId = props.match.params.id;
+    const academyDetails = useSelector((state) => state.academyDetails);
+    const { loading, error, academy } = academyDetails;
+        // <SingleCourse academy={academy}/>
+    useEffect(() => {
+        dispatch(detailsAcademy(academyId));
+    }, [dispatch, academyId]);
+
     console.log(academy);
-    if (!academy) {
-        return <div>Course Not Found</div>;
-    }
+
     return (
-        <SingleCourse academy={academy}/>
+        <div>
+            {loading ? (
+                <LoadingBox></LoadingBox>
+            ) : error ? (
+                <MessageBox>{error}</MessageBox>
+            ) : (
+                <SingleCourse academy={academy}/>
+            )
+            }
+        </div>
     );
 };
 
