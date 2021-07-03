@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Courses from '../Courses/Courses';
 import Carousel from "react-multi-carousel";
 import { Container } from 'react-bootstrap';
 import "react-multi-carousel/lib/styles.css";
 import Icons from "../common/Icons";
-import data from "../../data";
+import axios from 'axios';
+import LoadingBox from '../LoadingBox';
+import MessageBox from '../MessageBox';
 
 const MainPart = () => {
   const responsive = {
@@ -24,9 +26,35 @@ const MainPart = () => {
       paritialVisibilityGutter: 30
     }
   };
+
+  const [academys, setAcademys] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.get("http://localhost:5000/api/academy/search?keyword=");
+        console.log(res.data.data);
+        setLoading(false);
+        setAcademys(res.data.data);
+      } catch(err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <Container className="mt-5">
-      
+
+    {loading ? (
+      <LoadingBox></LoadingBox>
+    ) : error ? (
+      <MessageBox>{error}</MessageBox>
+    ) : (
       <div className="course-item">
         <h5 className="mb-2" style={{float: 'left'}}> 
           <Icons icon="fire" className="mr-2 text-danger" />
@@ -43,7 +71,7 @@ const MainPart = () => {
           autoPlaySpeed={3000}
         >
           {
-            data.accademys.map(academy => (
+            academys.map(academy => (
               <Courses key={academy.academy_id} academy={academy} />
               // <h2>{academy.academy_name}</h2>
             ))
@@ -51,7 +79,7 @@ const MainPart = () => {
         </Carousel>
       </div>
 
-      {/* <div className="course-item">
+      /* <div className="course-item">
         <h5 className="mb-2" style={{float: 'left'}}> 
           <Icons icon="books" className="mr-2 text-danger" />
           Best-selling courses:
@@ -95,7 +123,12 @@ const MainPart = () => {
               <Courses />
               <Courses />
         </Carousel>
-      </div> */}
+      </div> */
+    )
+    }
+    
+      
+      
     </Container>
 
     

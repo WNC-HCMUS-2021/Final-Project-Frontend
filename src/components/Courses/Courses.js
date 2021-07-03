@@ -48,13 +48,13 @@ const Courses = ({ academy }) => {
                   className="star-icon-course"
                   icon={faStarHalfAlt} />
                 <span className="badge-course">
-                  (300899)
+                  {academy.register}
                   </span>
               </p>
               <p className="price-course">
-                $139.99
+                ${academy.price}
               </p>
-              <p className="duration-course">
+              {/* <p className="duration-course">
                 4 months 10hours/week
               </p>
               <p className="level-course">
@@ -63,7 +63,7 @@ const Courses = ({ academy }) => {
               <button
                 className="badge-course">
                 Best-seller
-              </button>
+              </button> */}
             </div>
           </div>
 
