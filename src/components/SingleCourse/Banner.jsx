@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faStarHalfAlt, faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import "./SingleCourse.css"
 
-function Banner() {
+function Banner({academy}) {
   // const pic_url = author.user_pic ? author.user_pic : "/img/noPic.jpg";
 
   return (
@@ -27,7 +27,7 @@ function Banner() {
                     position: "relative",
                     boxShadow: "0 2px 55px rgba(47,85,212,0.3) !important",
                   }}
-                  src="https://firebasestorage.googleapis.com/v0/b/tu-academia.appspot.com/o/course-pics%2F557-ddadadasda.png?alt=media&token=c0efa91d-68be-486b-b129-405bc68f9fe1"
+                  src={academy.avatar}
                 ></Card.Img>
               </Link>
             </div>
@@ -39,7 +39,7 @@ function Banner() {
                 className="h2 my-4 mt-md-0 text-shadow"
                 style={{ color: "#fff" }}
               >
-                React with Redux
+                {academy.academy_name}
               </h1>
               </Link>
               <p
@@ -48,7 +48,7 @@ function Banner() {
                 data-aos-delay="200"
                 style={{ color: "#fff" }}
               >
-                A practical programming course for office workers, academics, and administrators who want to improve their productivity.
+                {academy.description_short}
               </p>
             </div>
 
@@ -75,7 +75,7 @@ function Banner() {
 
             <div className="mt-2">
               <span className="rating">
-              4.5
+               {academy.rate}
               </span>
               <FontAwesomeIcon
               className="star-icon ml-2"

@@ -17,35 +17,37 @@ import CourseVideoPage from './pages/CourseVideoPage';
 function App() {
   return (
     <div className="App">
-      <Router>
-				<NavbarPart />
+      	<Router>
+			<NavbarPart />
 
-				<Switch>
-					<Route exact path="/coursesearch">
-						<CourseSearch />
-					</Route>
-          			<Route exact path="/coursedetail">
-						<CourseDetail />
-					</Route>
-					<Route exact path="/coursevideo">
-						<CourseVideoPage />
-					</Route>
-          			<Route exact path="/login">
-						<Login />
-					</Route>
-					<Route exact path="/signup">
-						<Signup />
-					</Route>
-					<Route exact path="/">
-						<Home />
-					</Route>
-					<Redirect to="/">
-						<Home />
-					</Redirect>
-				</Switch>
+			<Switch>
+				<Route exact path="/coursesearch">
+					<CourseSearch />
+				</Route>
+				{/* <Route exact path="/coursedetail">
+					<CourseDetail />
+				</Route> */}
+				<Route exact path="/coursedetail/:id" component={CourseDetail}>
+				</Route>
+				<Route exact path="/coursevideo">
+					<CourseVideoPage />
+				</Route>
+				<Route exact path="/login">
+					<Login />
+				</Route>
+				<Route exact path="/signup">
+					<Signup />
+				</Route>
+				<Route exact path="/">
+					<Home />
+				</Route>
+				<Redirect to="/">
+					<Home />
+				</Redirect>
+			</Switch>
 
-				<Footer />
-			</Router>
+			<Footer />
+		</Router>
     </div>
   );
 }

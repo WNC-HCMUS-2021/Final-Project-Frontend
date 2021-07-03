@@ -44,18 +44,10 @@ const MainPart = () => {
         >
           {
             data.accademys.map(academy => (
-              <Courses academy={academy} />
+              <Courses key={academy.academy_id} academy={academy} />
               // <h2>{academy.academy_name}</h2>
             ))
           }
-              {/* <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses /> */}
         </Carousel>
       </div>
 
