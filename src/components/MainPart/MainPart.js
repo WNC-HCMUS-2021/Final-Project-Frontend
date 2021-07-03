@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Courses from '../Courses/Courses';
 import Carousel from "react-multi-carousel";
 import { Container } from 'react-bootstrap';
 import "react-multi-carousel/lib/styles.css";
 import Icons from "../common/Icons";
-import axios from 'axios';
 import LoadingBox from '../LoadingBox';
 import MessageBox from '../MessageBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { listAcademys } from '../actions/academyActions';
 
 const MainPart = () => {
   const responsive = {
@@ -27,25 +28,12 @@ const MainPart = () => {
     }
   };
 
-  const [academys, setAcademys] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const dispatch = useDispatch();
+  const academyList = useSelector((state) => state.academyList);
+  const { loading, error, academys } = academyList; 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const res = await axios.get("http://localhost:5000/api/academy/search?keyword=");
-        console.log(res.data.data);
-        setLoading(false);
-        setAcademys(res.data.data);
-      } catch(err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    }
-
-    fetchData();
-  }, []);
+    dispatch(listAcademys);
+  }, [dispatch]);
 
   return (
     <Container className="mt-5">
