@@ -3,6 +3,8 @@ import './NavbarPart.css';
 import { Nav, Navbar, Button, Form, FormControl } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 
 const NavbarPart = () => {
@@ -22,16 +24,16 @@ const NavbarPart = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Form inline>  
-            <FormControl type="text" placeholder="Search for anything" className="mr-sm-7" />   
+          <Form style={{width: "400px"}} className="ml-5">  
+            <FormControl type="text" placeholder="Search for anything" style={{width: "100%"}} className="mr-3" />   
           </Form>
           <Nav className="ml-auto">            
             <Nav.Link
-              className="mr-3">
+              className="mr-3 mt-1">
                 <NavLink to="/" style={{ color: 'gray' }}>Home</NavLink>
             </Nav.Link>
             <Nav.Link
-              className="mr-3">
+              className="mr-3 mt-1">
                 <NavLink to="/coursesearch" style={{ color: 'gray' }}>Courses</NavLink>
             </Nav.Link>
             {/* <Nav.Link
@@ -39,8 +41,20 @@ const NavbarPart = () => {
               Courses
             </Nav.Link> */}
             <Nav.Link
-              className="mr-3">
+              className="mr-3 mt-1">
               Dashboard
+            </Nav.Link>
+            <Nav.Link
+              className="mr-3 mt-1">
+                <Link to="/" style={{color: "gray"}}>
+                <FontAwesomeIcon
+                  className="mt-1"
+                  icon={faShoppingCart} />
+                  <div className="position-absolute top-0 left-50 translate-middle badge bg-danger rounded-circle" style={{color: "white"}}>
+                    2
+                  </div>
+                </Link>
+                {/* <NavLink to="/coursesearch" className="ml-1" style={{ color: 'gray' }}>Cart</NavLink> */}
             </Nav.Link>
             <Nav.Link className="mr-2">
               <Link to="/login">

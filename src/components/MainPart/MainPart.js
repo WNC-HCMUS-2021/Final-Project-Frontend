@@ -4,6 +4,7 @@ import Carousel from "react-multi-carousel";
 import { Container } from 'react-bootstrap';
 import "react-multi-carousel/lib/styles.css";
 import Icons from "../common/Icons";
+import data from "../../data";
 
 const MainPart = () => {
   const responsive = {
@@ -41,18 +42,24 @@ const MainPart = () => {
           autoPlay={true}
           autoPlaySpeed={3000}
         >
+          {
+            data.accademys.map(academy => (
+              <Courses academy={academy} />
+              // <h2>{academy.academy_name}</h2>
+            ))
+          }
+              {/* <Courses />
               <Courses />
               <Courses />
               <Courses />
               <Courses />
               <Courses />
               <Courses />
-              <Courses />
-              <Courses />
+              <Courses /> */}
         </Carousel>
       </div>
 
-      <div className="course-item">
+      {/* <div className="course-item">
         <h5 className="mb-2" style={{float: 'left'}}> 
           <Icons icon="books" className="mr-2 text-danger" />
           Best-selling courses:
@@ -96,7 +103,7 @@ const MainPart = () => {
               <Courses />
               <Courses />
         </Carousel>
-      </div>
+      </div> */}
     </Container>
 
     

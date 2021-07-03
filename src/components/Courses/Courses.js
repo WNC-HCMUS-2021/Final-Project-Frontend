@@ -4,21 +4,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faCartPlus, faStarHalfAlt, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-const Courses = () => {
+const Courses = ({ academy }) => {
   return (
   /* courses show in homepage*/
     <>
-      <div className="col-md-3 card-container-course text-left mb-5" >
+      <div key={academy.academy_id} className="col-md-3 card-container-course text-left mb-5" >
         <div className="card-course">
           <div className="card-body">
-            <Link to="/coursedetail" style={{ color: 'black' }}>
+            <Link to={`/coursedetail/${academy.academy_id}`} style={{ color: 'black' }}>
               <h5 className="card-title-course">
-                React with Redux
+                {academy.academy_name}
               </h5>
             </Link>
-            <Link to="/coursedetail">
+            <Link to={`/coursedetail/${academy.academy_id}`}>
               <img className="card-img"
-                src="https://i.ibb.co/ch8dHPv/4.jpg"
+                src={academy.avatar}
                 alt="" />
             </Link>
             <div className="card-text">
