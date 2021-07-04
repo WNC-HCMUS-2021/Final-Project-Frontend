@@ -3,22 +3,33 @@ import './Courses.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faCartPlus, faStarHalfAlt, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../actions/cartActions';
 
-const Courses = () => {
+const Courses = ({ academy }) => {
+  const academyId = academy.academy_id;
+  const dispatch = useDispatch();
+
+  const addToCartHandler = () => {
+    if (academyId) {
+      dispatch(addToCart(academyId));
+    }
+  }
+
   return (
   /* courses show in homepage*/
     <>
-      <div className="col-md-3 card-container-course text-left mb-5" >
+      <div key={academy.academy_id} className="col-md-3 card-container-course text-left mb-5" >
         <div className="card-course">
           <div className="card-body">
-            <Link to="/coursedetail" style={{ color: 'black' }}>
+            <Link to={`/coursedetail/${academy.academy_id}`} style={{ color: 'black' }}>
               <h5 className="card-title-course">
-                React with Redux
+                {academy.academy_name}
               </h5>
             </Link>
-            <Link to="/coursedetail">
+            <Link to={`/coursedetail/${academy.academy_id}`}>
               <img className="card-img"
-                src="https://i.ibb.co/ch8dHPv/4.jpg"
+                src={academy.avatar}
                 alt="" />
             </Link>
             <div className="card-text">
@@ -48,13 +59,13 @@ const Courses = () => {
                   className="star-icon-course"
                   icon={faStarHalfAlt} />
                 <span className="badge-course">
-                  (300899)
+                  {academy.register}
                   </span>
               </p>
               <p className="price-course">
-                $139.99
+                ${academy.price}
               </p>
-              <p className="duration-course">
+              {/* <p className="duration-course">
                 4 months 10hours/week
               </p>
               <p className="level-course">
@@ -63,7 +74,7 @@ const Courses = () => {
               <button
                 className="badge-course">
                 Best-seller
-              </button>
+              </button> */}
             </div>
           </div>
 
@@ -71,6 +82,7 @@ const Courses = () => {
           <button
             className="enroll-course"
             type="button"
+            onClick={addToCartHandler}
           >
             <FontAwesomeIcon
               className="mt-1"

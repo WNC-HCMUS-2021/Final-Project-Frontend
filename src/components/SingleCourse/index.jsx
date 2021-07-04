@@ -3,12 +3,12 @@ import Banner from "./Banner";
 import Description from "./Description";
 import MoreCourses from "./MoreCourses";
 
-export default function SingleCourse() {
+export default function SingleCourse({academy}) {
   return (
     <>
-      <Banner />
-      <Description />
-      <MoreCourses />
+      <Banner academy={academy}/>
+      <Description academy={academy}/>
+      <MoreCourses academy={academy}/>
     </>
   );
 }

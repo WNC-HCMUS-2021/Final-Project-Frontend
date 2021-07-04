@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Courses from '../Courses/Courses';
 import Carousel from "react-multi-carousel";
 import { Container } from 'react-bootstrap';
 import "react-multi-carousel/lib/styles.css";
 import Icons from "../common/Icons";
+import LoadingBox from '../LoadingBox';
+import MessageBox from '../MessageBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { listAcademys } from '../actions/academyActions';
 
 const MainPart = () => {
   const responsive = {
@@ -23,9 +27,22 @@ const MainPart = () => {
       paritialVisibilityGutter: 30
     }
   };
+
+  const dispatch = useDispatch();
+  const academyList = useSelector((state) => state.academyList);
+  const { loading, error, academys } = academyList; 
+  useEffect(() => {
+    dispatch(listAcademys);
+  }, [dispatch]);
+
   return (
     <Container className="mt-5">
-      
+
+    {loading ? (
+      <LoadingBox></LoadingBox>
+    ) : error ? (
+      <MessageBox>{error}</MessageBox>
+    ) : (
       <div className="course-item">
         <h5 className="mb-2" style={{float: 'left'}}> 
           <Icons icon="fire" className="mr-2 text-danger" />
@@ -41,18 +58,16 @@ const MainPart = () => {
           autoPlay={true}
           autoPlaySpeed={3000}
         >
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
+          {
+            academys.map(academy => (
+              <Courses key={academy.academy_id} academy={academy} />
+              // <h2>{academy.academy_name}</h2>
+            ))
+          }
         </Carousel>
       </div>
 
-      <div className="course-item">
+      /* <div className="course-item">
         <h5 className="mb-2" style={{float: 'left'}}> 
           <Icons icon="books" className="mr-2 text-danger" />
           Best-selling courses:
@@ -96,7 +111,12 @@ const MainPart = () => {
               <Courses />
               <Courses />
         </Carousel>
-      </div>
+      </div> */
+    )
+    }
+    
+      
+      
     </Container>
 
     

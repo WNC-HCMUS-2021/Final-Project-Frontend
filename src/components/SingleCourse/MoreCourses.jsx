@@ -1,5 +1,5 @@
 import React from "react";
-import Courses from "../Courses/Courses";
+// import Courses from "../Courses/Courses";
 
 export default function MoreCourses() {
   return (
@@ -14,10 +14,10 @@ export default function MoreCourses() {
 
       <div className="container">
         <div className="row">
+          {/* <Courses />
           <Courses />
           <Courses />
-          <Courses />
-          <Courses />
+          <Courses /> */}
         </div>
       </div>
     </>
