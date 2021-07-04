@@ -3,8 +3,19 @@ import './Courses.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faCartPlus, faStarHalfAlt, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../actions/cartActions';
 
 const Courses = ({ academy }) => {
+  const academyId = academy.academy_id;
+  const dispatch = useDispatch();
+
+  const addToCartHandler = () => {
+    if (academyId) {
+      dispatch(addToCart(academyId));
+    }
+  }
+
   return (
   /* courses show in homepage*/
     <>
@@ -71,6 +82,7 @@ const Courses = ({ academy }) => {
           <button
             className="enroll-course"
             type="button"
+            onClick={addToCartHandler}
           >
             <FontAwesomeIcon
               className="mt-1"

@@ -5,9 +5,14 @@ import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 
 
 const NavbarPart = () => {
+
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
   return (
     <>
       <Navbar expand="lg">
@@ -46,13 +51,18 @@ const NavbarPart = () => {
             </Nav.Link>
             <Nav.Link
               className="mr-3 mt-1">
-                <Link to="/" style={{color: "gray"}}>
+                <Link to="/cart" style={{color: "gray"}}>
                 <FontAwesomeIcon
                   className="mt-1"
                   icon={faShoppingCart} />
-                  <div className="position-absolute top-0 left-50 translate-middle badge bg-danger rounded-circle" style={{color: "white"}}>
-                    2
-                  </div>
+                  {
+                    cartItems.length > 0 && (
+                      <div className="position-absolute top-0 left-50 translate-middle badge bg-danger rounded-circle" style={{color: "white"}}>
+                        {cartItems.length}
+                      </div>
+                    )
+                  }
+                  
                 </Link>
                 {/* <NavLink to="/coursesearch" className="ml-1" style={{ color: 'gray' }}>Cart</NavLink> */}
             </Nav.Link>

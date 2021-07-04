@@ -29,7 +29,10 @@ function App() {
 					<CourseDetail />
 				</Route> */}
 				<Route exact path="/coursedetail/:id" component={CourseDetail}></Route>
-				<Route exact path="/cart/:id" component={Cart}></Route>
+				{/* <Route exact path="/cart/:id" component={Cart}></Route> */}
+				<Route exact path="/cart">
+					<Cart />
+				</Route>
 				<Route exact path="/coursevideo">
 					<CourseVideoPage />
 				</Route>

@@ -1,11 +1,9 @@
 import React from 'react';
 
-function Cart(props) {
-    const academyId = props.match.params.id;
+function Cart() {
     return (
         <div>
-            <h1>Cart Screen</h1>
-            <p>Add to Cart: {academyId}</p>
+            <h1>Cart Page</h1>
         </div>
     )
 }

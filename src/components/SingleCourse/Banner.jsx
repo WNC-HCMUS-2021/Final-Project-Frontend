@@ -4,15 +4,19 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faStarHalfAlt, faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import "./SingleCourse.css";
-import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../actions/cartActions";
 
 function Banner(props) {
   // const pic_url = author.user_pic ? author.user_pic : "/img/noPic.jpg";
 
-  const history = useHistory();
+  const academyId = props.academy.academy_id;
+  const dispatch = useDispatch();
+
   const addToCartHandler = () => {
-    console.log(props.academy.academy_id);
-    history.push(`cart/${props.academy.academy_id}`);
+    if (academyId) {
+      dispatch(addToCart(academyId));
+    }
   }
 
   return (
