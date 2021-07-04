@@ -13,6 +13,7 @@ import {
 import Login from './pages/Login';
 import Signup from "./pages/Signup";
 import CourseVideoPage from './pages/CourseVideoPage';
+import Cart from './pages/Cart';
 
 function App() {
   return (
@@ -27,8 +28,8 @@ function App() {
 				{/* <Route exact path="/coursedetail">
 					<CourseDetail />
 				</Route> */}
-				<Route exact path="/coursedetail/:id" component={CourseDetail}>
-				</Route>
+				<Route exact path="/coursedetail/:id" component={CourseDetail}></Route>
+				<Route exact path="/cart/:id" component={Cart}></Route>
 				<Route exact path="/coursevideo">
 					<CourseVideoPage />
 				</Route>

@@ -3,10 +3,17 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faStarHalfAlt, faCartPlus } from '@fortawesome/free-solid-svg-icons';
-import "./SingleCourse.css"
+import "./SingleCourse.css";
+import { useHistory } from "react-router-dom";
 
-function Banner({academy}) {
+function Banner(props) {
   // const pic_url = author.user_pic ? author.user_pic : "/img/noPic.jpg";
+
+  const history = useHistory();
+  const addToCartHandler = () => {
+    console.log(props.academy.academy_id);
+    history.push(`cart/${props.academy.academy_id}`);
+  }
 
   return (
     <section
@@ -27,7 +34,7 @@ function Banner({academy}) {
                     position: "relative",
                     boxShadow: "0 2px 55px rgba(47,85,212,0.3) !important",
                   }}
-                  src={academy.avatar}
+                  src={props.academy.avatar}
                 ></Card.Img>
               </Link>
             </div>
@@ -39,7 +46,7 @@ function Banner({academy}) {
                 className="h2 my-4 mt-md-0 text-shadow"
                 style={{ color: "#fff" }}
               >
-                {academy.academy_name}
+                {props.academy.academy_name}
               </h1>
               </Link>
               <p
@@ -48,7 +55,7 @@ function Banner({academy}) {
                 data-aos-delay="200"
                 style={{ color: "#fff" }}
               >
-                {academy.description_short}
+                {props.academy.description_short}
               </p>
             </div>
 
@@ -75,7 +82,7 @@ function Banner({academy}) {
 
             <div className="mt-2">
               <span className="rating">
-               {academy.rate}
+               {props.academy.rate}
               </span>
               <FontAwesomeIcon
               className="star-icon ml-2"
@@ -93,27 +100,33 @@ function Banner({academy}) {
               className="star-icon"
               icon={faStarHalfAlt} />
               <span className="student-course-detail">
-              ({academy.register})
+              ({props.academy.register})
               </span>
             </div>
 
             <div className="price">
               <span className="price-discount">
-                  {`$${academy.price_discount}`}
+                  {`$${props.academy.price_discount}`}
               </span>
               <span className="price-original">
-              {`$${academy.price}`}
+              {`$${props.academy.price}`}
               </span>
             </div>
+
+            {
+              props.academy.is_delete !== true && (
+                <button
+                  className="enroll mt-1"
+                  type="button"
+                  onClick={addToCartHandler}
+                >
+                  <FontAwesomeIcon
+                    icon={faCartPlus} />
+                    <span className="ml-1">Add To Cart</span>
+                </button>
+              )
+            }
             
-            <button
-              className="enroll mt-1"
-              type="button"
-            >
-              <FontAwesomeIcon
-                icon={faCartPlus} />
-                <span className="ml-1">Add To Cart</span>
-            </button>
           </div>
         </div>
       </div>
