@@ -6,8 +6,19 @@ export const listAcademys = async (dispatch) => {
         type: ACADEMY_LIST_REQUEST,
     });
     try {
-        const res = await axios.get("http://localhost:5000/api/academy/search?keyword=");
-        dispatch({type: ACADEMY_LIST_SUCCESS, payload: res.data.data });
+        const resAll = await axios.get("http://localhost:5000/api/academy/search?keyword=");
+        const resOutstanding = await axios.get("http://localhost:5000/api/academy/top3highlight");
+        const resMostView = await axios.get("http://localhost:5000/api/academy/top10view");
+        const resLatest = await axios.get("http://localhost:5000/api/academy/top10latest");
+        dispatch({
+            type: ACADEMY_LIST_SUCCESS, 
+            payload: {
+                listAll: resAll.data.data,
+                listOutstanding: resOutstanding.data.data,
+                listMostView: resMostView.data.data,
+                listLatest: resLatest.data.data
+            }
+        });
     } catch (err) {
         dispatch({type: ACADEMY_LIST_FAIL, payload: err.message });
     }
