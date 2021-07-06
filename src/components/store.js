@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { academyListReducer, academyDetailsReducer } from './reducers/academyReducers';
+import { academyListReducer, academyDetailsReducer, academyListSearchReducer } from './reducers/academyReducers';
 import { cartReducer } from './reducers/cartReducers';
 
 const initialState = {
@@ -10,6 +10,7 @@ const initialState = {
 };
 const reducer = combineReducers({
     academyList: academyListReducer,
+    academyListSearch: academyListSearchReducer,
     academyDetails: academyDetailsReducer,
     cart: cartReducer
 });

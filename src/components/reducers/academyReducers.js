@@ -1,4 +1,4 @@
-import { ACADEMY_DETAILS_FAIL, ACADEMY_DETAILS_REQUEST, ACADEMY_DETAILS_SUCCESS, ACADEMY_LIST_FAIL, ACADEMY_LIST_REQUEST, ACADEMY_LIST_SUCCESS } from "../../constants/academyConstants";
+import { ACADEMY_DETAILS_FAIL, ACADEMY_DETAILS_REQUEST, ACADEMY_DETAILS_SUCCESS, ACADEMY_LIST_FAIL, ACADEMY_LIST_REQUEST, ACADEMY_LIST_SEARCH_FAIL, ACADEMY_LIST_SEARCH_REQUEST, ACADEMY_LIST_SEARCH_SUCCESS, ACADEMY_LIST_SUCCESS } from "../../constants/academyConstants";
 
 export const academyListReducer = (state = { loading: true, academys: [] }, action) => {
     switch (action.type) {
@@ -11,6 +11,19 @@ export const academyListReducer = (state = { loading: true, academys: [] }, acti
         default:
             return state;
     }
+}
+
+export const academyListSearchReducer = (state = { loading: true, academys: [] }, action) => {
+  switch (action.type) {
+      case ACADEMY_LIST_SEARCH_REQUEST:
+          return { loading: true };
+      case ACADEMY_LIST_SEARCH_SUCCESS:
+          return { loading: false, academys: action.payload };
+      case ACADEMY_LIST_SEARCH_FAIL:
+          return { loading: false, error: action.payload };
+      default:
+          return state;
+  }
 }
 
 export const academyDetailsReducer = (state = { academy: {}, loading: true}, action) => {

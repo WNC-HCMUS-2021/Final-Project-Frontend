@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './NavbarPart.css';
 import { Nav, Navbar, Button, Form, FormControl } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
@@ -6,12 +6,22 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 
 const NavbarPart = () => {
+  const [keyword, setKeyword] = useState('');
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+
+  let history = useHistory();
+  const handleSubmit = e => {
+    e.preventDefault();
+    // history.push(`http://localhost:3000/api/academy/search?keyword=${document.getElementById('search').value}`);
+    // history.push("/coursesearch");
+    history.push(`/search/keyword/${keyword}`);
+  };
 
   return (
     <>
@@ -29,8 +39,8 @@ const NavbarPart = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Form style={{width: "400px"}} className="ml-5">  
-            <FormControl type="text" placeholder="Search for anything" style={{width: "100%"}} className="mr-3" />   
+          <Form onSubmit={handleSubmit} style={{width: "400px"}} className="ml-5">  
+            <FormControl id="search" type="text" placeholder="Search for anything" style={{width: "100%"}} className="mr-3" onChange={(e) => setKeyword(e.target.value)} />   
           </Form>
           <Nav className="ml-auto">            
             <Nav.Link
