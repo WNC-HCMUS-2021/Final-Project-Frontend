@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './NavbarPart.css';
 import { Nav, Navbar, Button, Form, FormControl } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
@@ -6,17 +6,27 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 
 const NavbarPart = () => {
+  const [keyword, setKeyword] = useState('');
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
+  let history = useHistory();
+  const handleSubmit = e => {
+    e.preventDefault();
+    // history.push(`http://localhost:3000/api/academy/search?keyword=${document.getElementById('search').value}`);
+    // history.push("/coursesearch");
+    history.push(`/search/keyword/${keyword}`);
+  };
+
   return (
     <>
       <Navbar expand="lg">
-        <Navbar.Brand>
+        <div>
           <Link to="/" style={{ color: 'black' }}>
             <img
               alt=""
@@ -24,33 +34,32 @@ const NavbarPart = () => {
               width="100"
               height="40"
               className="d-inline-block align-top"
-            /> <b>E-Learning</b>
+            /> 
           </Link>
-        </Navbar.Brand>
+        </div>
+        <div>
+          <Link to="/" style={{ color: 'black' }}><b>E-Learning</b></Link>
+        </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Form style={{width: "400px"}} className="ml-5">  
-            <FormControl type="text" placeholder="Search for anything" style={{width: "100%"}} className="mr-3" />   
+          <Form onSubmit={handleSubmit} style={{width: "400px"}} className="ml-5">  
+            <FormControl id="search" type="text" placeholder="Search for anything" style={{width: "100%"}} className="mr-3" onChange={(e) => setKeyword(e.target.value)} />   
           </Form>
           <Nav className="ml-auto">            
-            <Nav.Link
-              className="mr-3 mt-1">
+            <div
+              className="mr-3 mt-2">
                 <NavLink to="/" style={{ color: 'gray' }}>Home</NavLink>
-            </Nav.Link>
-            <Nav.Link
-              className="mr-3 mt-1">
+            </div>
+            <div
+              className="mr-3 mt-2">
                 <NavLink to="/coursesearch" style={{ color: 'gray' }}>Courses</NavLink>
-            </Nav.Link>
-            {/* <Nav.Link
-              className="mr-3">
-              Courses
-            </Nav.Link> */}
-            <Nav.Link
-              className="mr-3 mt-1">
-              Dashboard
-            </Nav.Link>
-            <Nav.Link
-              className="mr-3 mt-1">
+            </div>
+            <div
+              className="mr-3 mt-2">
+                <NavLink to="/" style={{ color: 'gray' }}>Dashboard</NavLink>
+            </div>
+            <div
+              className="mr-4 mt-2">
                 <Link to="/cart" style={{color: "gray"}}>
                 <FontAwesomeIcon
                   className="mt-1"
@@ -65,8 +74,8 @@ const NavbarPart = () => {
                   
                 </Link>
                 {/* <NavLink to="/coursesearch" className="ml-1" style={{ color: 'gray' }}>Cart</NavLink> */}
-            </Nav.Link>
-            <Nav.Link className="mr-2">
+            </div>
+            <div className="mr-2">
               <Link to="/login">
                <Button
                 className="pl-5 pr-5"
@@ -74,8 +83,8 @@ const NavbarPart = () => {
                     Login
                 </Button>
               </Link>
-            </Nav.Link>
-            <Nav.Link className="mr-3">
+            </div>
+            <div className="mr-3">
               <Link to="/signup">
                 <Button
                   className="pl-5 pr-5"
@@ -83,7 +92,7 @@ const NavbarPart = () => {
                   SignUp
                 </Button>
               </Link>
-            </Nav.Link>
+            </div>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
