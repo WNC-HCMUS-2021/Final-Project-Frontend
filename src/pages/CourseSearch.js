@@ -71,7 +71,7 @@ const CourseSearch = () => {
                                 </div>
                             </Container>
                             { academys.map((academy) => (
-                                <CoursesList academy={academy} />
+                                <CoursesList key={academy.academy_id} academy={academy} />
                             ))}  
                         </Col>
                     </Row>

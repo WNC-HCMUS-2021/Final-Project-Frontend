@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const CoursesList = ({academy}) => {
   return (
     <>
-        <Container>
+        <Container key={academy.academy_id}>
             <div className="card border-top-0 border-right-0 border-left-0">
                 <div className="card-body">
                     <Row>

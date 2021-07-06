@@ -6,31 +6,31 @@ import { Link } from "react-router-dom";
 const FrameCollapsable = ({active}) => (
   <Collapse in={active} style={{textAlign: "left"}}>
     <Nav defaultActiveKey="/home" className="flex-column">
-      <Nav.Link>
+      <div>
         <Link to="/coursevideo">
           <SingleItem />
         </Link>
-      </Nav.Link>
-      <Nav.Link>
+      </div>
+      <div>
         <Link to="/coursevideo">
           <SingleItem />
         </Link>
-      </Nav.Link>
-      <Nav.Link>
+      </div>
+      <div>
         <Link to="/coursevideo">
           <SingleItem />
         </Link>
-      </Nav.Link>
-      <Nav.Link>
+      </div>
+      <div>
         <Link to="/coursevideo">
           <SingleItem />
         </Link>
-      </Nav.Link>
-      <Nav.Link>
+      </div>
+      <div>
         <Link to="/coursevideo">
           <SingleItem />
         </Link>
-      </Nav.Link>
+      </div>
     </Nav>
   </Collapse>
 );

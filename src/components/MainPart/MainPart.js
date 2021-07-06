@@ -52,7 +52,6 @@ const MainPart = () => {
           </h5>
           <Carousel
             ssr
-            partialVisbile
             responsive={responsive}
             containerClass="container"
             draggable
@@ -71,7 +70,6 @@ const MainPart = () => {
           </h5>
           <Carousel
             ssr
-            partialVisbile
             responsive={responsive}
             containerClass="container"
             draggable
@@ -94,7 +92,6 @@ const MainPart = () => {
           </h5>
           <Carousel
             ssr
-            partialVisbile
             responsive={responsive}
             containerClass="container"
             draggable

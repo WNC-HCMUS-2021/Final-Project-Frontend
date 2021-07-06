@@ -7,7 +7,7 @@ export const listAcademys = async (dispatch) => {
     });
     try {
         const resAll = await axios.get("http://localhost:5000/api/academy/search?keyword=");
-        const resOutstanding = await axios.get("http://localhost:5000/api/academy/top3highlight");
+        const resOutstanding = await axios.get("http://localhost:5000/api/academy/top4highlight");
         const resMostView = await axios.get("http://localhost:5000/api/academy/top10view");
         const resLatest = await axios.get("http://localhost:5000/api/academy/top10latest");
         dispatch({
