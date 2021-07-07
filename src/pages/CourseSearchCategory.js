@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { listSearchAcademys } from '../components/actions/academyActions';
+import { listSearchCategoryAcademys } from '../components/actions/academyActions';
 import { Container, Row, Col, Dropdown, ButtonGroup } from 'react-bootstrap';
 import CheckBox from '../components/CheckBox/Checkbox';
 import CoursesList from '../components/CoursesList/CoursesList';
@@ -9,15 +9,18 @@ import PaginationPart from '../components/PaginationPart/PaginationPart';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
-const CourseSearch = () => {
+const CourseSearchCategory = () => {
     const dispatch = useDispatch();
 
-    const { keyword = '' } = useParams();
-    const academyListSearch = useSelector((state) => state.academyListSearch);
-    const { loading, error, academys } = academyListSearch;
+    const { categoryId= "" } = useParams();
+    
+    const academyListSearchCategory = useSelector((state) => state.academyListSearchCategory);
+    const {
+        loading, error, academys,
+    } = academyListSearchCategory;
     useEffect(() => {
-        dispatch(listSearchAcademys({ keyword: keyword !== '' ? keyword : '' }));
-    }, [dispatch, keyword]);
+        dispatch(listSearchCategoryAcademys(categoryId));
+    }, [dispatch, categoryId]);
 
     return (
     <>
@@ -124,4 +127,4 @@ const CourseSearch = () => {
   );
 };
 
-export default CourseSearch;
+export default CourseSearchCategory;

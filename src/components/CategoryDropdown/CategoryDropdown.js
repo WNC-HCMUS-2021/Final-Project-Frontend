@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { listAcademyCategories } from '../actions/academyActions';
 import LoadingBox from '../LoadingBox';
 import MessageBox from '../MessageBox';
+import { Link } from 'react-router-dom';
 import "./style.css";
 
 function CategoryDropdown() {
@@ -28,11 +29,11 @@ function CategoryDropdown() {
                             <MessageBox variant="danger">{error}</MessageBox>
                             ) : (
                             categories.map((cate) => (
-                                <li key={cate.academy_category_id}><a href="/#">{cate.academy_category_name}</a>
+                                <li key={cate.academy_category_id}><Link to={`/search/category/${cate.academy_category_id}`}>{cate.academy_category_name}</Link>
                                 {cate.child.length > 0 ? (
                                     <ul>
                                         {cate.child.map((c) => (
-                                            <li key={c.academy_category_id}><a href="/#">{c.academy_category_name}</a></li>
+                                            <li key={c.academy_category_id}><Link to={`/search/category/${c.academy_category_id}`}>{c.academy_category_name}</Link></li>
                                         ))}
                                     </ul>
                                 ) : null

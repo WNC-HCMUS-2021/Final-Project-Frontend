@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ACADEMY_CATEGORY_LIST_FAIL, ACADEMY_CATEGORY_LIST_REQUEST, ACADEMY_CATEGORY_LIST_SUCCESS, ACADEMY_DETAILS_FAIL, ACADEMY_DETAILS_REQUEST, ACADEMY_DETAILS_SUCCESS, ACADEMY_LIST_FAIL, ACADEMY_LIST_REQUEST, ACADEMY_LIST_SEARCH_FAIL, ACADEMY_LIST_SEARCH_REQUEST, ACADEMY_LIST_SEARCH_SUCCESS, ACADEMY_LIST_SUCCESS } from "../../constants/academyConstants";
+import { ACADEMY_CATEGORY_LIST_FAIL, ACADEMY_CATEGORY_LIST_REQUEST, ACADEMY_CATEGORY_LIST_SUCCESS, ACADEMY_DETAILS_FAIL, ACADEMY_DETAILS_REQUEST, ACADEMY_DETAILS_SUCCESS, ACADEMY_LIST_FAIL, ACADEMY_LIST_REQUEST, ACADEMY_LIST_SEARCH_CATEGORY_FAIL, ACADEMY_LIST_SEARCH_CATEGORY_REQUEST, ACADEMY_LIST_SEARCH_CATEGORY_SUCCESS, ACADEMY_LIST_SEARCH_FAIL, ACADEMY_LIST_SEARCH_REQUEST, ACADEMY_LIST_SEARCH_SUCCESS, ACADEMY_LIST_SUCCESS } from "../../constants/academyConstants";
 
 export const listAcademys = async (dispatch) => {
     dispatch({
@@ -36,6 +36,21 @@ export const listSearchAcademys = ({ keyword = '' }) => async (dispatch) => {
         });
     } catch (err) {
         dispatch({type: ACADEMY_LIST_SEARCH_FAIL, payload: err.message });
+    }
+}
+
+export const listSearchCategoryAcademys = (categoryId) => async (dispatch) => {
+    dispatch({
+        type: ACADEMY_LIST_SEARCH_CATEGORY_REQUEST,
+    });
+    try {
+        const res = await axios.get(`http://localhost:5000/api/category/${categoryId}`);
+        dispatch({
+            type: ACADEMY_LIST_SEARCH_CATEGORY_SUCCESS, 
+            payload: res.data.data
+        });
+    } catch (err) {
+        dispatch({type: ACADEMY_LIST_SEARCH_CATEGORY_FAIL, payload: err.message });
     }
 }
 
