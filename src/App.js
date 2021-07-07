@@ -35,6 +35,11 @@ function App() {
 					component={CourseSearch}
 					exact
 				></Route>
+				<Route
+					path="/search/category/:categoryId"
+					component={CourseSearch}
+					exact
+				></Route>
 				<Route exact path="/cart">
 					<Cart />
 				</Route>
