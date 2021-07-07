@@ -18,7 +18,7 @@ function Cart() {
     return (
         <>
             <section style={{height: "100px", width: "100%", display: "flex", alignItems: "center", background: "black"}}>
-                <div class="container">
+                <div className="container">
                     <h3 style={{color: "white", float: "left"}}>Shopping Cart</h3>
                 </div>
             </section>

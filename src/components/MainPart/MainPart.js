@@ -31,6 +31,7 @@ const MainPart = () => {
   const dispatch = useDispatch();
   const academyList = useSelector((state) => state.academyList);
   const { loading, error, academys } = academyList; 
+  console.log(academyList);
   useEffect(() => {
     dispatch(listAcademys);
   }, [dispatch]);
@@ -43,83 +44,71 @@ const MainPart = () => {
     ) : error ? (
       <MessageBox>{error}</MessageBox>
     ) : (
-      <div className="course-item">
-        <h5 className="mb-2" style={{float: 'left'}}> 
-          <Icons icon="fire" className="mr-2 text-danger" />
-          Newest courses:
-        </h5>
-        <Carousel
-          ssr
-          partialVisbile
-          responsive={responsive}
-          containerClass="container"
-          draggable
-          infinite={true}
-          autoPlay={true}
-          autoPlaySpeed={3000}
-        >
-          {
-            academys.map(academy => (
-              <Courses key={academy.academy_id} academy={academy} />
-              // <h2>{academy.academy_name}</h2>
-            ))
-          }
-        </Carousel>
-      </div>
+      <>
+        <div className="course-item">
+          <h5 className="mb-2" style={{float: 'left'}}> 
+            <Icons icon="eye" className="mr-2 text-danger" />
+            Most-watched courses:
+          </h5>
+          <Carousel
+            ssr
+            responsive={responsive}
+            containerClass="container"
+            draggable
+          >
+            {
+              academys.listMostView.map(academy => (
+                <Courses key={academy.academy_id} academy={academy} />
+              ))
+            }
+          </Carousel>
+        </div>
+        <div className="course-item">
+          <h5 className="mb-2" style={{float: 'left'}}> 
+            <Icons icon="fire" className="mr-2 text-danger" />
+            Newest courses:
+          </h5>
+          <Carousel
+            ssr
+            responsive={responsive}
+            containerClass="container"
+            draggable
+            infinite={true}
+            autoPlay={true}
+            autoPlaySpeed={3000}
+          >
+            {
+              academys.listAll.map(academy => (
+                <Courses key={academy.academy_id} academy={academy} />
+              ))
+            }
+          </Carousel>
+        </div>
 
-      /* <div className="course-item">
-        <h5 className="mb-2" style={{float: 'left'}}> 
-          <Icons icon="books" className="mr-2 text-danger" />
-          Best-selling courses:
-        </h5>
-        <Carousel
-          ssr
-          partialVisbile
-          responsive={responsive}
-          containerClass="container"
-          draggable
-        >
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-        </Carousel>
-      </div>
+        <div className="course-item">
+          <h5 className="mb-2" style={{float: 'left'}}> 
+            <Icons icon="books" className="mr-2 text-danger" />
+            Best-selling courses:
+          </h5>
+          <Carousel
+            ssr
+            responsive={responsive}
+            containerClass="container"
+            draggable
+          >
+            {
+              academys.listOutstanding.map(academy => (
+                <Courses key={academy.academy_id} academy={academy} />
+              ))
+            }
+          </Carousel>
+        </div>
 
-      <div className="course-item">
-        <h5 className="mb-2" style={{float: 'left'}}> 
-          <Icons icon="eye" className="mr-2 text-danger" />
-          Most-watched courses:
-        </h5>
-        <Carousel
-          ssr
-          partialVisbile
-          responsive={responsive}
-          containerClass="container"
-          draggable
-        >
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-              <Courses />
-        </Carousel>
-      </div> */
+        
+      </>
     )
     }
-    
-      
-      
     </Container>
-
-    
   );
 };
 // Sau này tách các div này ra xử lý, thêm carousel danh sách chủ đề mua nhiều nhất dạng hình ảnh, đẹp!
