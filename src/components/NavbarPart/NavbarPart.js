@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+// import CategoryMenu from '../CategoryMenu/CategoryMenu';
+import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
 
 
 const NavbarPart = () => {
@@ -40,8 +42,12 @@ const NavbarPart = () => {
         <div>
           <Link to="/" style={{ color: 'black' }}><b>E-Learning</b></Link>
         </div>
+        
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+          <div className="mt-1">
+            <CategoryDropdown />
+          </div>
           <Form onSubmit={handleSubmit} style={{width: "400px"}} className="ml-5">  
             <FormControl id="search" type="text" placeholder="Search for anything" style={{width: "100%"}} className="mr-3" onChange={(e) => setKeyword(e.target.value)} />   
           </Form>
