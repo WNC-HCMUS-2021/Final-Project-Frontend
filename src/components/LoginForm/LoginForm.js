@@ -1,16 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import "./LoginForm.css";
 import { axiosInstance, parseJwt } from "../../utils";
-
+import { Alert } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
-export default function LoginForm(props) {
+const LoginForm = (props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  let history = useHistory();
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const onSubmit = async function (data) {
     try {
@@ -19,12 +22,17 @@ export default function LoginForm(props) {
         localStorage.token = res.data.data.accessToken;
         const obj = parseJwt(res.data.data.accessToken);
         localStorage.userId = obj.userId;
+        localStorage.username = obj.username;
+
+        props.setIsLogin(true);
+
+        history.push("/");
       } else {
         alert("Invalid login.");
       }
     } catch (err) {
       if (err.response) {
-        console.log(err.response.data);
+        setErrorMessage(err.response.data.message);
       } else if (err.request) {
         console.log(err.request);
       } else {
@@ -38,8 +46,20 @@ export default function LoginForm(props) {
       <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
         <h3>Log In</h3>
 
+        {errorMessage ? (
+          <Alert
+            variant="warning"
+            onClose={() => setErrorMessage(false)}
+            dismissible
+          >
+            {errorMessage}
+          </Alert>
+        ) : null}
+
         <div className="form-group">
-          <label>Username {errors.username && <span>*</span>}</label>
+          <label>
+            Username {errors.username && <span color="red">*</span>}
+          </label>
           <input
             className="form-control"
             placeholder="Enter username"
@@ -81,7 +101,12 @@ export default function LoginForm(props) {
         <p className="forgot-password text-right">
           Forgot <Link to="/">password?</Link>
         </p>
+        <p className="forgot-password text-right">
+          <Link to="/signup">Create account </Link>
+        </p>
       </form>
     </div>
   );
-}
+};
+
+export default LoginForm;

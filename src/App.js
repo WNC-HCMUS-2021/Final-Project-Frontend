@@ -1,4 +1,5 @@
 import "./App.css";
+import React, { useState } from "react";
 import NavbarPart from "./components/NavbarPart/NavbarPart";
 import Footer from "./components/Footer/Footer";
 import CourseSearch from "./pages/CourseSearch";
@@ -10,16 +11,19 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import LoginForm from "./components/LoginForm/LoginForm";
 import CourseVideoPage from "./pages/CourseVideoPage";
 import Cart from "./pages/Cart";
+import SignupForm from "./components/SignupForm/SignupForm";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
+  const [isLogin, setIsLogin] = useState(localStorage.username ? true : false);
+
   return (
     <div className="App">
       <Router>
-        <NavbarPart />
+        <NavbarPart {...{ isLogin, setIsLogin }} />
 
         <Switch>
           <Route exact path="/coursesearch">
@@ -46,10 +50,10 @@ function App() {
             <CourseVideoPage />
           </Route>
           <Route exact path="/login">
-            <Login />
+            <LoginForm {...{ isLogin, setIsLogin }} />
           </Route>
           <Route exact path="/signup">
-            <Signup />
+            <SignupForm />
           </Route>
           <Route exact path="/">
             <Home />
