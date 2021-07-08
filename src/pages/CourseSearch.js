@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { listSearchAcademys } from '../components/actions/academyActions';
 import { Container, Row, Col } from 'react-bootstrap';
-import CheckBox from '../components/CheckBox/Checkbox';
+// import CheckBox from '../components/CheckBox/Checkbox';
 import CoursesList from '../components/CoursesList/CoursesList';
 import PaginationPart from '../components/PaginationPart/PaginationPart';
 import LoadingBox from '../components/LoadingBox';
@@ -44,16 +44,16 @@ const CourseSearch = () => {
             <MessageBox>{error}</MessageBox>
             ) : (
             <>
-                <Container fluid={true}>
+                <Container>
                     <Row>
-                        <Col xs={3}>
+                        {/* <Col xs={3}>
                             <div className="card">
                                 <div className="card-body" >
                                     <CheckBox />
                                 </div>
                             </div>    
-                        </Col>
-                        <Col xs={9}>
+                        </Col> */}
+                        <Col>
                             <Container>
                                 <div className="card">
                                     <div className="card-body text-left">
@@ -63,6 +63,7 @@ const CourseSearch = () => {
                                             onChange={(e) => {
                                                 history.push(getFilterUrl({ order: e.target.value }));
                                             }}
+                                            style={{height: "30px"}}
                                         >
                                             <option value="lowtohigh">Price: Low to High</option>
                                             <option value="hightolow">Price: High to Low</option>
