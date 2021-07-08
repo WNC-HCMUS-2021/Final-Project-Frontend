@@ -14,6 +14,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
+// import CategoryMenu from '../CategoryMenu/CategoryMenu';
+import CategoryDropdown from "../CategoryDropdown/CategoryDropdown";
 
 const NavbarPart = (props) => {
   const [keyword, setKeyword] = useState("");
@@ -52,8 +54,12 @@ const NavbarPart = (props) => {
             <b>E-Learning</b>
           </Link>
         </div>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+          <div className="mt-1">
+            <CategoryDropdown />
+          </div>
           <Form
             onSubmit={handleSubmit}
             style={{ width: "400px" }}

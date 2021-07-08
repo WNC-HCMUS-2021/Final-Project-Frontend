@@ -14,7 +14,7 @@ const CoursesList = ({academy}) => {
                     <Row>
                     <Col>
                         {/* <Image src="https://i.ibb.co/ch8dHPv/4.jpg" thumbnail /> */}
-                        <Link to="/coursedetail">
+                        <Link to={`/coursedetail/${academy.academy_id}`}>
                             <img className="card-img"
                                 src="https://i.ibb.co/85Ssw1y/1.png"
                                 alt="" />
@@ -22,24 +22,25 @@ const CoursesList = ({academy}) => {
                     </Col>
                     <Col xs={6} style={{textAlign: "left"}}>
                         <div>
-                            <Link to="/coursedetail" style={{ color: 'black' }}>
+                            <Link to={`/coursedetail/${academy.academy_id}`} style={{ color: 'black' }}>
                             <b className="card-title">
                                 {academy.academy_name}
                             </b>
                             </Link>
                         </div>
                         <div className="short-description">
-                            A practical programming course for office workers, academics, and administrators who want to improve their productivity.
+                            {academy.description_short}
                         </div>
                         <div className="instructor">
                             <FontAwesomeIcon
                             className="user-icon"
                             icon={faUserAlt} />
+                            {/* {academy.teacher.name} */}
                             Stephen Grider
                         </div>
                         <div>
                             <span className="rating">
-                            4.5
+                            {academy.rate}
                             </span>
                             <FontAwesomeIcon
                             className="star-icon"
@@ -57,20 +58,8 @@ const CoursesList = ({academy}) => {
                             className="star-icon"
                             icon={faStarHalfAlt} />
                             <span className="student">
-                            (300899)
+                            ({academy.register})
                             </span>
-                        </div>
-                        <div>
-                            <span className="duration">
-                                4 months 10hours/week
-                            </span>
-                            <span>
-                                -
-                            </span>
-                            <span className="level">
-                                All level
-                            </span>
-                            
                         </div>
                         <button
                             className="badge-best-seller">
@@ -79,10 +68,10 @@ const CoursesList = ({academy}) => {
                     </Col>
                     <Col className="price-course-list">
                         <div className="price-discount-course-list">
-                            $139.99
+                            ${academy.price_discount}
                         </div>
                         <div className="price-original-course-list">
-                            $199.99
+                            ${academy.price}
                         </div>
                     </Col>
                     

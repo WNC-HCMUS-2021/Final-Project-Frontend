@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { listSearchAcademys } from '../components/actions/academyActions';
+import { listSearchCategoryAcademys } from '../components/actions/academyActions';
 import { Container, Row, Col } from 'react-bootstrap';
 // import CheckBox from '../components/CheckBox/Checkbox';
 import CoursesList from '../components/CoursesList/CoursesList';
@@ -10,21 +10,25 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { useHistory } from 'react-router';
 
-const CourseSearch = () => {
+
+const CourseSearchCategory = () => {
     const dispatch = useDispatch();
 
-    const { keyword = '', order = 'lowtohigh', } = useParams();
-    const academyListSearch = useSelector((state) => state.academyListSearch);
-    const { loading, error, academys } = academyListSearch;
+    const { categoryId= "", order = 'lowtohigh' } = useParams();
+    
+    const academyListSearchCategory = useSelector((state) => state.academyListSearchCategory);
+    const {
+        loading, error, academys,
+    } = academyListSearchCategory;
     useEffect(() => {
-        dispatch(listSearchAcademys({ keyword: keyword !== '' ? keyword : '', order }));
-    }, [dispatch, keyword, order]);
+        dispatch(listSearchCategoryAcademys(categoryId, order));
+    }, [dispatch, categoryId, order]);
 
     let history = useHistory();
     const getFilterUrl = (filter) => {
-        const filterKeyword = filter.keyword || keyword;
+        const filterCategoryId = filter.categoryId || categoryId;
         const sortOrder = filter.order || order;
-        return `/search/keyword/${filterKeyword}/order/${sortOrder}`;
+        return `/search/category/${filterCategoryId}/order/${sortOrder}`;
     };
 
     return (
@@ -69,7 +73,6 @@ const CourseSearch = () => {
                                             <option value="hightolow">Price: High to Low</option>
                                             <option value="toprated">Student Ratings</option>
                                         </select>
-                                        
                                     </div>
                                 </div>
                             </Container>
@@ -129,4 +132,4 @@ const CourseSearch = () => {
   );
 };
 
-export default CourseSearch;
+export default CourseSearchCategory;

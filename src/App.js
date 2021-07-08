@@ -11,11 +11,12 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+
 import LoginForm from "./components/LoginForm/LoginForm";
+import SignupForm from "./components/SignupForm/SignupForm";
 import CourseVideoPage from "./pages/CourseVideoPage";
 import Cart from "./pages/Cart";
-import SignupForm from "./components/SignupForm/SignupForm";
-import ProtectedRoute from "./components/ProtectedRoute";
+import CourseSearchCategory from "./pages/CourseSearchCategory";
 
 function App() {
   const [isLogin, setIsLogin] = useState(localStorage.username ? true : false);
@@ -41,6 +42,21 @@ function App() {
           <Route
             path="/search/keyword/:keyword?"
             component={CourseSearch}
+            exact
+          ></Route>
+          <Route
+            path="/search/keyword/:keyword/order/:order"
+            component={CourseSearch}
+            exact
+          ></Route>
+          <Route
+            path="/search/category/:categoryId"
+            component={CourseSearchCategory}
+            exact
+          ></Route>
+          <Route
+            path="/search/category/:categoryId/order/:order"
+            component={CourseSearchCategory}
             exact
           ></Route>
           <Route exact path="/cart">
