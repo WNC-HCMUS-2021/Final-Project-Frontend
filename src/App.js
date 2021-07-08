@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Signup from "./pages/Signup";
 import CourseVideoPage from './pages/CourseVideoPage';
 import Cart from './pages/Cart';
+import CourseSearchCategory from './pages/CourseSearchCategory';
 
 function App() {
   return (
@@ -33,6 +34,21 @@ function App() {
 				<Route
 					path="/search/keyword/:keyword?"
 					component={CourseSearch}
+					exact
+				></Route>
+				<Route
+					path="/search/keyword/:keyword/order/:order"
+					component={CourseSearch}
+					exact
+				></Route>
+				<Route
+					path="/search/category/:categoryId"
+					component={CourseSearchCategory}
+					exact
+				></Route>
+				<Route
+					path="/search/category/:categoryId/order/:order"
+					component={CourseSearchCategory}
 					exact
 				></Route>
 				<Route exact path="/cart">

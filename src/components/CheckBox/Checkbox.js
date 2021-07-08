@@ -8,7 +8,7 @@ const Checkbox = () => {
                 Topic:
             </h3>
             <Form>
-                <Form.Group controlId="formBasicCheckbox">
+                <Form.Group>
                     <Form.Check type="checkbox" label="Web Development" />
                     <Form.Check type="checkbox" label="Mobile Development" />
                     <Form.Check type="checkbox" label="Security Network" />
