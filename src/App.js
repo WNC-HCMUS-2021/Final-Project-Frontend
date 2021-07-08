@@ -46,6 +46,11 @@ function App() {
 					component={CourseSearchCategory}
 					exact
 				></Route>
+				<Route
+					path="/search/category/:categoryId/order/:order"
+					component={CourseSearchCategory}
+					exact
+				></Route>
 				<Route exact path="/cart">
 					<Cart />
 				</Route>

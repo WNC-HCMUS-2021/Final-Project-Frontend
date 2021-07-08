@@ -16,8 +16,6 @@ const CourseSearch = () => {
     const { keyword = '', order = 'lowtohigh', } = useParams();
     const academyListSearch = useSelector((state) => state.academyListSearch);
     const { loading, error, academys } = academyListSearch;
-    console.log(keyword);
-    console.log(order);
     useEffect(() => {
         dispatch(listSearchAcademys({ keyword: keyword !== '' ? keyword : '', order }));
     }, [dispatch, keyword, order]);

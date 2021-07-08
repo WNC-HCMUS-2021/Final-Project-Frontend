@@ -2,25 +2,34 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { listSearchCategoryAcademys } from '../components/actions/academyActions';
-import { Container, Row, Col, Dropdown, ButtonGroup } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import CheckBox from '../components/CheckBox/Checkbox';
 import CoursesList from '../components/CoursesList/CoursesList';
 import PaginationPart from '../components/PaginationPart/PaginationPart';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { useHistory } from 'react-router';
+
 
 const CourseSearchCategory = () => {
     const dispatch = useDispatch();
 
-    const { categoryId= "" } = useParams();
+    const { categoryId= "", order = 'lowtohigh' } = useParams();
     
     const academyListSearchCategory = useSelector((state) => state.academyListSearchCategory);
     const {
         loading, error, academys,
     } = academyListSearchCategory;
     useEffect(() => {
-        dispatch(listSearchCategoryAcademys(categoryId));
-    }, [dispatch, categoryId]);
+        dispatch(listSearchCategoryAcademys(categoryId, order));
+    }, [dispatch, categoryId, order]);
+
+    let history = useHistory();
+    const getFilterUrl = (filter) => {
+        const filterCategoryId = filter.categoryId || categoryId;
+        const sortOrder = filter.order || order;
+        return `/search/category/${filterCategoryId}/order/${sortOrder}`;
+    };
 
     return (
     <>
@@ -53,21 +62,16 @@ const CourseSearchCategory = () => {
                                 <div className="card">
                                     <div className="card-body text-left">
                                         <span>Sorted by: </span>
-
-                                        <Dropdown as={ButtonGroup}>
-                                        <Dropdown.Toggle id="dropdown-custom-1">Rating</Dropdown.Toggle>
-                                            <Dropdown.Menu className="super-colors">
-                                                <Dropdown.Item eventKey="1">Rating Descending</Dropdown.Item>
-                                                <Dropdown.Item eventKey="2">Rating Ascending</Dropdown.Item>
-                                            </Dropdown.Menu>
-                                        </Dropdown>{' '}
-                                        <Dropdown as={ButtonGroup}>
-                                        <Dropdown.Toggle id="dropdown-custom-1">Price</Dropdown.Toggle>
-                                            <Dropdown.Menu className="super-colors">
-                                                <Dropdown.Item eventKey="1">Price Descending</Dropdown.Item>
-                                                <Dropdown.Item eventKey="2">Price Ascending</Dropdown.Item>
-                                            </Dropdown.Menu>
-                                        </Dropdown>{' '}
+                                        <select
+                                            value={order}
+                                            onChange={(e) => {
+                                                history.push(getFilterUrl({ order: e.target.value }));
+                                            }}
+                                        >
+                                            <option value="lowtohigh">Price: Low to High</option>
+                                            <option value="hightolow">Price: High to Low</option>
+                                            <option value="toprated">Student Ratings</option>
+                                        </select>
                                     </div>
                                 </div>
                             </Container>

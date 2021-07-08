@@ -51,12 +51,25 @@ export const listSearchAcademys = ({ keyword = '', order = '' }) => async (dispa
     }
 }
 
-export const listSearchCategoryAcademys = (categoryId) => async (dispatch) => {
+export const listSearchCategoryAcademys = (categoryId, order) => async (dispatch) => {
     dispatch({
         type: ACADEMY_LIST_SEARCH_CATEGORY_REQUEST,
     });
     try {
-        const res = await axios.get(`http://localhost:5000/api/academy/category/${categoryId}`);
+        let res;
+        if (order === "lowtohigh") {
+            res = await axios.get(`http://localhost:5000/api/academy/search?category=${categoryId}&price=asc`);
+        }
+        if (order === "hightolow") {
+            res = await axios.get(`http://localhost:5000/api/academy/search?category=${categoryId}&price=desc`);
+        }
+        if (order === "toprated") {
+            res = await axios.get(`http://localhost:5000/api/academy/search?category=${categoryId}&rate=desc`);
+        }
+        if (order === "") {
+            res = await axios.get(`http://localhost:5000/api/academy/category/${categoryId}`);
+        }
+        
         dispatch({
             type: ACADEMY_LIST_SEARCH_CATEGORY_SUCCESS, 
             payload: res.data.data
