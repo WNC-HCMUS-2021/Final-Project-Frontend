@@ -78,7 +78,7 @@ const MainPart = () => {
             autoPlaySpeed={3000}
           >
             {
-              academys.listAll.map(academy => (
+              academys.listLatest.map(academy => (
                 <Courses key={academy.academy_id} academy={academy} />
               ))
             }

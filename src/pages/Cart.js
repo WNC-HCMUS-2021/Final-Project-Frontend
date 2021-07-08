@@ -73,7 +73,7 @@ function Cart() {
                                                             </div>
                                                         </Col>
                                                         <Col xs={3}>
-                                                            <button onClick={() => removeFromCartHandler(item.academy)} type="button" class="btn btn-outline-danger">Remove From Cart</button>
+                                                            <button onClick={() => removeFromCartHandler(item.academy)} type="button" className="btn btn-outline-danger">Remove From Cart</button>
                                                         </Col>
                                                         <Col xs={2} className="price-course-list">
                                                             <div className="price-discount-course-list">

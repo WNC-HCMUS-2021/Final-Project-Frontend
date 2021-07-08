@@ -44,7 +44,7 @@ export const listSearchCategoryAcademys = (categoryId) => async (dispatch) => {
         type: ACADEMY_LIST_SEARCH_CATEGORY_REQUEST,
     });
     try {
-        const res = await axios.get(`http://localhost:5000/api/category/${categoryId}`);
+        const res = await axios.get(`http://localhost:5000/api/academy/category/${categoryId}`);
         dispatch({
             type: ACADEMY_LIST_SEARCH_CATEGORY_SUCCESS, 
             payload: res.data.data
