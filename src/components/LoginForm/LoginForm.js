@@ -20,9 +20,14 @@ const LoginForm = (props) => {
       const res = await axiosInstance.post("/auth", data);
       if (res.data.result) {
         localStorage.token = res.data.data.accessToken;
+        localStorage.refreshToken = res.data.data.refreshToken;
         const obj = parseJwt(res.data.data.accessToken);
         localStorage.userId = obj.userId;
         localStorage.username = obj.username;
+
+        axiosInstance.defaults.headers[
+          "x-access-token"
+        ] = `${localStorage.token}`;
 
         props.setIsLogin(true);
 

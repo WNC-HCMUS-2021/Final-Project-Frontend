@@ -12,11 +12,13 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import LoginForm from "./components/LoginForm/LoginForm";
-import SignupForm from "./components/SignupForm/SignupForm";
 import CourseVideoPage from "./pages/CourseVideoPage";
 import Cart from "./pages/Cart";
 import CourseSearchCategory from "./pages/CourseSearchCategory";
+import Profile from "./components/User/Profile/Profile";
+import ProtectedRouteUser from "./components/ProtectedRouteUser";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   const [isLogin, setIsLogin] = useState(localStorage.username ? true : false);
@@ -66,11 +68,17 @@ function App() {
             <CourseVideoPage />
           </Route>
           <Route exact path="/login">
-            <LoginForm {...{ isLogin, setIsLogin }} />
+            <Login {...{ isLogin, setIsLogin }} />
           </Route>
           <Route exact path="/signup">
-            <SignupForm />
+            <Signup />
           </Route>
+          <ProtectedRouteUser
+            exact
+            path="/profile"
+            component={Profile}
+          ></ProtectedRouteUser>
+
           <Route exact path="/">
             <Home />
           </Route>

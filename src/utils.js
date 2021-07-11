@@ -3,10 +3,48 @@ import axios from "axios";
 export const axiosInstance = axios.create({
   baseURL: "http://localhost:5000/api",
   timeout: 5000,
-  headers: {
-    "x-access-token": localStorage.token,
-  },
 });
+
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const originalRequest = error.config;
+
+    console.log(error.response);
+
+    if (error.response.status === 401) {
+      const refreshToken = localStorage.getItem("refreshToken");
+
+      if (refreshToken) {
+        return axiosInstance
+          .post("/auth/refresh", {
+            accessToken: localStorage.getItem("token"),
+            refreshToken: refreshToken,
+          })
+          .then((response) => {
+            localStorage.setItem("token", response.data.data.accessToken);
+
+            let temp = response.data.data.accessToken;
+
+            axiosInstance.defaults.headers[
+              "x-access-token"
+            ] = `${response.data.data.accessToken}`;
+
+            return axiosInstance(originalRequest);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        console.log("Refresh token is revoke");
+        window.location.href = "/login/";
+      }
+    }
+
+    // specific error handling done elsewhere
+    return Promise.reject(error);
+  }
+);
 
 export function parseJwt(token) {
   var base64Url = token.split(".")[1];
