@@ -40,9 +40,7 @@ const Courses = ({ academy }) => {
                   icon={faUserAlt} />
                 Stephen Grider
               </p>
-              <p>
               <Rating rate={academy.rate} register={academy.register} />
-              </p>
               <p className="price-course">
                 ${academy.price}
               </p>
