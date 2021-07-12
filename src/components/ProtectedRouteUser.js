@@ -1,9 +1,8 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 
-function ProtectedRoute({ component: Component, ...restOfProps }) {
+function ProtectedRouteUser({ component: Component, ...restOfProps }) {
   const isAuthenticated = localStorage.getItem("token");
-  console.log("this", isAuthenticated);
 
   return (
     <Route
@@ -15,4 +14,4 @@ function ProtectedRoute({ component: Component, ...restOfProps }) {
   );
 }
 
-export default ProtectedRoute;
+export default ProtectedRouteUser;

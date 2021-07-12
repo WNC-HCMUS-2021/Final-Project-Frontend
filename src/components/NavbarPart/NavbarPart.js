@@ -110,7 +110,9 @@ const NavbarPart = (props) => {
                 id="basic-nav-dropdown"
                 alignRight
               >
-                <NavDropdown.Item>Profile</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => history.push("/profile")}>
+                  Profile
+                </NavDropdown.Item>
                 <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
               </NavDropdown>
             ) : (
