@@ -1,10 +1,11 @@
 import React from 'react';
 import './Courses.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faCartPlus, faStarHalfAlt, faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../actions/cartActions';
+import Rating from '../Rating/Rating';
 
 const Courses = ({ academy }) => {
   const academyId = academy.academy_id;
@@ -40,27 +41,7 @@ const Courses = ({ academy }) => {
                 Stephen Grider
               </p>
               <p>
-                <span className="rating-course">
-                  4.5
-                </span>
-                <FontAwesomeIcon
-                  className="star-icon-course"
-                  icon={faStar} />
-                <FontAwesomeIcon
-                  className="star-icon-course"
-                  icon={faStar} />
-                <FontAwesomeIcon
-                  className="star-icon-course"
-                  icon={faStar} />
-                <FontAwesomeIcon
-                  className="star-icon-course"
-                  icon={faStar} />
-                <FontAwesomeIcon
-                  className="star-icon-course"
-                  icon={faStarHalfAlt} />
-                <span className="badge-course">
-                  {academy.register}
-                  </span>
+              <Rating rate={academy.rate} register={academy.register} />
               </p>
               <p className="price-course">
                 ${academy.price}

@@ -2,10 +2,11 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faStarHalfAlt, faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import "./SingleCourse.css";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../actions/cartActions";
+import Rating from "../Rating/Rating";
 
 function Banner(props) {
   // const pic_url = author.user_pic ? author.user_pic : "/img/noPic.jpg";
@@ -85,27 +86,7 @@ function Banner(props) {
             </div>
 
             <div className="mt-2">
-              <span className="rating">
-               {props.academy.rate}
-              </span>
-              <FontAwesomeIcon
-              className="star-icon ml-2"
-              icon={faStar} />
-              <FontAwesomeIcon
-              className="star-icon"
-              icon={faStar} />
-              <FontAwesomeIcon
-              className="star-icon"
-              icon={faStar} />
-              <FontAwesomeIcon
-              className="star-icon"
-              icon={faStar} />
-              <FontAwesomeIcon
-              className="star-icon"
-              icon={faStarHalfAlt} />
-              <span className="student-course-detail">
-              ({props.academy.register})
-              </span>
+              <Rating rate={props.academy.rate} register={props.academy.register} />
             </div>
 
             <div className="price">
