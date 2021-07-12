@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import { parseJwt } from "../utils";
+import { parseJwt } from "../API/axiosConfig";
 
 function ProtectedRouteAdmin({ component: Component, ...restOfProps }) {
   const isAuthenticated = localStorage.getItem("token");

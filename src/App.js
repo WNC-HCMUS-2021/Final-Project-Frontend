@@ -19,6 +19,7 @@ import Profile from "./components/User/Profile/Profile";
 import ProtectedRouteUser from "./components/ProtectedRouteUser";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import MyProfile from "./pages/MyProfile";
 
 function App() {
   const [isLogin, setIsLogin] = useState(localStorage.username ? true : false);
@@ -73,11 +74,9 @@ function App() {
           <Route exact path="/signup">
             <Signup />
           </Route>
-          <ProtectedRouteUser
-            exact
-            path="/profile"
-            component={Profile}
-          ></ProtectedRouteUser>
+          <ProtectedRouteUser exact path="/profile">
+            <MyProfile></MyProfile>{" "}
+          </ProtectedRouteUser>
 
           <Route exact path="/">
             <Home />

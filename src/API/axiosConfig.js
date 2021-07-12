@@ -5,14 +5,29 @@ export const axiosInstance = axios.create({
   timeout: 5000,
 });
 
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const accessToken = localStorage.getItem("token");
+    if (accessToken) {
+      config.headers["x-access-token"] = accessToken;
+    }
+    return config;
+  },
+  (error) => {
+    console.log(error);
+    return Promise.reject(error);
+  }
+);
+
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     const originalRequest = error.config;
 
-    console.log(error.response);
-
-    if (error.response.status === 401) {
+    if (
+      error.response.status === 401 &&
+      error.response.data.message === "Invalid access token!"
+    ) {
       const refreshToken = localStorage.getItem("refreshToken");
 
       if (refreshToken) {
@@ -23,13 +38,6 @@ axiosInstance.interceptors.response.use(
           })
           .then((response) => {
             localStorage.setItem("token", response.data.data.accessToken);
-
-            let temp = response.data.data.accessToken;
-
-            axiosInstance.defaults.headers[
-              "x-access-token"
-            ] = `${response.data.data.accessToken}`;
-
             return axiosInstance(originalRequest);
           })
           .catch((err) => {

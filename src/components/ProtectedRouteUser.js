@@ -1,6 +1,5 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import { parseJwt } from "../utils";
 
 function ProtectedRouteUser({ component: Component, ...restOfProps }) {
   const isAuthenticated = localStorage.getItem("token");

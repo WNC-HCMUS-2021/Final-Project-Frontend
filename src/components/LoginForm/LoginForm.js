@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./LoginForm.css";
-import { axiosInstance, parseJwt } from "../../utils";
+import { parseJwt } from "../../API/axiosConfig";
 import { Alert } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import api from "../../API/listAPI";
 
 const LoginForm = (props) => {
   const {
@@ -17,17 +18,13 @@ const LoginForm = (props) => {
 
   const onSubmit = async function (data) {
     try {
-      const res = await axiosInstance.post("/auth", data);
+      const res = await api.login(data);
       if (res.data.result) {
         localStorage.token = res.data.data.accessToken;
         localStorage.refreshToken = res.data.data.refreshToken;
         const obj = parseJwt(res.data.data.accessToken);
         localStorage.userId = obj.userId;
         localStorage.username = obj.username;
-
-        axiosInstance.defaults.headers[
-          "x-access-token"
-        ] = `${localStorage.token}`;
 
         props.setIsLogin(true);
 
