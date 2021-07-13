@@ -1,14 +1,17 @@
-.card-container-course{
+.card-container-courses{
   float:left;
 }
-.card-course{
+.card-container-courses .card-img {
+  max-height: 110px;
+}
+.card-container-courses .card-course{
   width: 258px;
-  height: 380px;
+  height: 310px;
   margin: 15px 0px;
   padding-bottom: 10px;
   box-shadow: 3px 3px 5px 6px #ccc;
 }
-.card-title-course{
+.card-container-courses .card-title-course{
   text-align: center;
 }
 .instructor-course{
@@ -34,12 +37,22 @@
   color:rgb(27, 25, 25);
 }
 .enroll-course{
-  width: 50%;
+  width: 60%;
   margin: auto;
   border-radius: 25px;
   background-color: #EB8A2F;
   display: flex;
   justify-content: center;
+}
+.price-course-list{
+  text-align: center;
+  /* font-weight:bold; */
+}
+.price-discount-course-list{
+  font-weight:bold;
+}
+.price-original-course-list{
+  text-decoration: line-through;
 }
 
 
