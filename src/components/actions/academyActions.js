@@ -24,23 +24,23 @@ export const listAcademys = async (dispatch) => {
     }
 }
 
-export const listSearchAcademys = ({ keyword = '', order = '' }) => async (dispatch) => {
+export const listSearchAcademys = ({ keyword = '', order = '', pageNumber = '' }) => async (dispatch) => {
     dispatch({
         type: ACADEMY_LIST_SEARCH_REQUEST,
     });
     try {
         let res;
         if (order === "lowtohigh") {
-            res = await axios.get(`http://localhost:5000/api/academy/search?keyword=${keyword}&price=asc`);
+            res = await axios.get(`http://localhost:5000/api/academy/search?keyword=${keyword}&price=asc&page=${pageNumber}&limit=3`);
         }
         if (order === "hightolow") {
-            res = await axios.get(`http://localhost:5000/api/academy/search?keyword=${keyword}&price=desc`);
+            res = await axios.get(`http://localhost:5000/api/academy/search?keyword=${keyword}&price=desc&page=${pageNumber}&limit=3`);
         }
         if (order === "toprated") {
-            res = await axios.get(`http://localhost:5000/api/academy/search?keyword=${keyword}&rate=desc`);
+            res = await axios.get(`http://localhost:5000/api/academy/search?keyword=${keyword}&rate=desc&page=${pageNumber}&limit=3`);
         }
         if (order === "") {
-            res = await axios.get(`http://localhost:5000/api/academy/search?keyword=${keyword}`);
+            res = await axios.get(`http://localhost:5000/api/academy/search?keyword=${keyword}&page=${pageNumber}&limit=3`);
         }
         dispatch({
             type: ACADEMY_LIST_SEARCH_SUCCESS, 

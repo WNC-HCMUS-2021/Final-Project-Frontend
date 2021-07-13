@@ -1,30 +1,31 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { listSearchAcademys } from '../components/actions/academyActions';
 import { Container, Row, Col } from 'react-bootstrap';
 // import CheckBox from '../components/CheckBox/Checkbox';
 import CoursesList from '../components/CoursesList/CoursesList';
-import PaginationPart from '../components/PaginationPart/PaginationPart';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { useHistory } from 'react-router';
 
+
 const CourseSearch = () => {
     const dispatch = useDispatch();
 
-    const { keyword = '', order = 'lowtohigh', } = useParams();
+    const { keyword = '', order = 'lowtohigh', pageNumber = 1 } = useParams();
     const academyListSearch = useSelector((state) => state.academyListSearch);
-    const { loading, error, academys } = academyListSearch;
+    const { loading, error, academys, page, pages } = academyListSearch;
     useEffect(() => {
-        dispatch(listSearchAcademys({ keyword: keyword !== '' ? keyword : '', order }));
-    }, [dispatch, keyword, order]);
+        dispatch(listSearchAcademys({ keyword: keyword !== '' ? keyword : '', order, pageNumber }));
+    }, [dispatch, keyword, order, pageNumber]);
 
     let history = useHistory();
     const getFilterUrl = (filter) => {
         const filterKeyword = filter.keyword || keyword;
         const sortOrder = filter.order || order;
-        return `/search/keyword/${filterKeyword}/order/${sortOrder}`;
+        const pageNum = filter.pageNumber || pageNumber;
+        return `/search/keyword/${filterKeyword}/order/${sortOrder}/page/${pageNum}`;
     };
 
     return (
@@ -73,15 +74,26 @@ const CourseSearch = () => {
                                     </div>
                                 </div>
                             </Container>
-                            { academys.listAcademy.map((academy) => (
+                            { academys.map((academy) => (
                                 <CoursesList key={academy.academy_id} academy={academy} />
                             ))}  
                         </Col>
                     </Row>
                     <Row style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                        <PaginationPart />
+                        <div className="row center pagination">
+                            {[...Array(pages).keys()].map((x) => (
+                            <Link
+                                className={x + 1 === page ? 'active' : ''}
+                                key={x + 1}
+                                to={getFilterUrl({ pageNumber: x + 1 })}
+                            >
+                                {x + 1}
+                            </Link>
+                            ))}
+                        </div> 
                     </Row>
-                </Container>             
+                </Container> 
+                    
             </>   
             )}
         </div>

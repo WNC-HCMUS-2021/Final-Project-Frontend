@@ -48,7 +48,7 @@ function App() {
             exact
           ></Route>
           <Route
-            path="/search/keyword/:keyword/order/:order"
+            path="/search/keyword/:keyword/order/:order/page/:pageNumber"
             component={CourseSearch}
             exact
           ></Route>
