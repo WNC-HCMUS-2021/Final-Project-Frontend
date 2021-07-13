@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { listSearchCategoryAcademys } from '../components/actions/academyActions';
 import { Container, Row, Col } from 'react-bootstrap';
 // import CheckBox from '../components/CheckBox/Checkbox';
 import CoursesList from '../components/CoursesList/CoursesList';
-import PaginationPart from '../components/PaginationPart/PaginationPart';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { useHistory } from 'react-router';
@@ -14,21 +13,22 @@ import { useHistory } from 'react-router';
 const CourseSearchCategory = () => {
     const dispatch = useDispatch();
 
-    const { categoryId= "", order = 'lowtohigh' } = useParams();
+    const { categoryId= "", order = 'lowtohigh', pageNumber = 1 } = useParams();
     
     const academyListSearchCategory = useSelector((state) => state.academyListSearchCategory);
     const {
-        loading, error, academys,
+        loading, error, academys, page, pages
     } = academyListSearchCategory;
     useEffect(() => {
-        dispatch(listSearchCategoryAcademys(categoryId, order));
-    }, [dispatch, categoryId, order]);
+        dispatch(listSearchCategoryAcademys(categoryId, order, pageNumber));
+    }, [dispatch, categoryId, order, pageNumber]);
 
     let history = useHistory();
     const getFilterUrl = (filter) => {
         const filterCategoryId = filter.categoryId || categoryId;
         const sortOrder = filter.order || order;
-        return `/search/category/${filterCategoryId}/order/${sortOrder}`;
+        const pageNum = filter.pageNumber || pageNumber;
+        return `/search/category/${filterCategoryId}/order/${sortOrder}/page/${pageNum}`;
     };
 
     return (
@@ -76,13 +76,23 @@ const CourseSearchCategory = () => {
                                     </div>
                                 </div>
                             </Container>
-                            { academys.listAcademy.map((academy) => (
+                            { academys.map((academy) => (
                                 <CoursesList key={academy.academy_id} academy={academy} />
                             ))}  
                         </Col>
                     </Row>
                     <Row style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
-                        <PaginationPart />
+                    <div className="row center pagination">
+                            {[...Array(pages).keys()].map((x) => (
+                            <Link
+                                className={x + 1 === page ? 'active' : ''}
+                                key={x + 1}
+                                to={getFilterUrl({ pageNumber: x + 1 })}
+                            >
+                                {x + 1}
+                            </Link>
+                            ))}
+                        </div> 
                     </Row>
                 </Container>             
             </>   
