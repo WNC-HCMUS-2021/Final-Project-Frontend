@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ACADEMY_CATEGORY_LIST_FAIL, ACADEMY_CATEGORY_LIST_REQUEST, ACADEMY_CATEGORY_LIST_SUCCESS, ACADEMY_DETAILS_FAIL, ACADEMY_DETAILS_REQUEST, ACADEMY_DETAILS_SUCCESS, ACADEMY_LIST_FAIL, ACADEMY_LIST_REQUEST, ACADEMY_LIST_SEARCH_CATEGORY_FAIL, ACADEMY_LIST_SEARCH_CATEGORY_REQUEST, ACADEMY_LIST_SEARCH_CATEGORY_SUCCESS, ACADEMY_LIST_SEARCH_FAIL, ACADEMY_LIST_SEARCH_REQUEST, ACADEMY_LIST_SEARCH_SUCCESS, ACADEMY_LIST_SUCCESS } from "../../constants/academyConstants";
+import { ACADEMY_CATEGORY_LIST_FAIL, ACADEMY_CATEGORY_LIST_REQUEST, ACADEMY_CATEGORY_LIST_SUCCESS, ACADEMY_DETAILS_FAIL, ACADEMY_DETAILS_REQUEST, ACADEMY_DETAILS_SUCCESS, ACADEMY_LIST_FAIL, ACADEMY_LIST_RELATED_FAIL, ACADEMY_LIST_RELATED_REQUEST, ACADEMY_LIST_RELATED_SUCCESS, ACADEMY_LIST_REQUEST, ACADEMY_LIST_SEARCH_CATEGORY_FAIL, ACADEMY_LIST_SEARCH_CATEGORY_REQUEST, ACADEMY_LIST_SEARCH_CATEGORY_SUCCESS, ACADEMY_LIST_SEARCH_FAIL, ACADEMY_LIST_SEARCH_REQUEST, ACADEMY_LIST_SEARCH_SUCCESS, ACADEMY_LIST_SUCCESS } from "../../constants/academyConstants";
 
 export const listAcademys = async (dispatch) => {
     dispatch({
@@ -101,3 +101,18 @@ export const detailsAcademy = (academyId) => async (dispatch) => {
       dispatch({ type: ACADEMY_DETAILS_FAIL, payload: err.message });
     }
 };
+
+export const listRelatedAcademys = (academyId) => async (dispatch) => {
+    dispatch({
+        type: ACADEMY_LIST_RELATED_REQUEST,
+    });
+    try {
+        const res = await axios.get(`http://localhost:5000/api/academy/${academyId}/related`);
+        dispatch({
+            type: ACADEMY_LIST_RELATED_SUCCESS, 
+            payload: res.data.data
+        });
+    } catch (err) {
+        dispatch({type: ACADEMY_LIST_RELATED_FAIL, payload: err.message });
+    }
+}
