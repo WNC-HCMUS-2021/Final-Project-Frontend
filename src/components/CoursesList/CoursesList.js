@@ -17,7 +17,7 @@ const CoursesList = ({academy}) => {
                         {/* <Image src="https://i.ibb.co/ch8dHPv/4.jpg" thumbnail /> */}
                         <Link to={`/coursedetail/${academy.academy_id}`}>
                             <img className="card-img"
-                                src="https://i.ibb.co/85Ssw1y/1.png"
+                                src={academy.avatar}
                                 alt="" />
                         </Link>
                     </Col>
@@ -37,7 +37,7 @@ const CoursesList = ({academy}) => {
                             className="user-icon"
                             icon={faUserAlt} />
                             {/* {academy.teacher.name} */}
-                            Stephen Grider
+                            {" " + academy.teacher.name}
                         </div>
                         <Rating rate={academy.rate} register={academy.register} />
                         <button

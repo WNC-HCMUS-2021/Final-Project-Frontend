@@ -1,5 +1,5 @@
-import React, { Component, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import "./SignupForm.css";
 import { useForm, Controller } from "react-hook-form";
@@ -11,7 +11,7 @@ const SignupForm = (props) => {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
 
   const [birthday, setBirthday] = useState(new Date());

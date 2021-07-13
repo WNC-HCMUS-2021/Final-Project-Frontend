@@ -55,7 +55,7 @@ function Banner(props) {
               </h1>
               </Link>
               <p
-                className="mb-4 mr-5"
+                className="mb-1 mr-5"
                 data-aos="fade-up"
                 data-aos-delay="200"
                 style={{ color: "#fff" }}
@@ -63,6 +63,14 @@ function Banner(props) {
                 {props.academy.description_short}
               </p>
             </div>
+
+            <span className="date timeago" title={ props.academy.updated_at } style={{ color: "#fff" }}>
+              Last update: {new Intl.DateTimeFormat('en-GB', { 
+                  month: 'long', 
+                  day: '2-digit',
+                  year: 'numeric', 
+              }).format(new Date(props.academy.updated_at))}
+            </span>
 
             <div className="teacher d-flex align-items-center px-2 mt-3">
               <img
@@ -75,7 +83,7 @@ function Banner(props) {
                 <h6
                   className="mb-0 text-shadow"
                   style={{ color: "#fff" }}
-                >Stephen Grider</h6>
+                >{" " + props.academy.teacher.name}</h6>
                 <p
                   className="small my-0 text-muted"
                   style={{ color: "#fff" }}
