@@ -15,7 +15,6 @@ import {
 import CourseVideoPage from "./pages/CourseVideoPage";
 import Cart from "./pages/Cart";
 import CourseSearchCategory from "./pages/CourseSearchCategory";
-import Profile from "./components/User/Profile/Profile";
 import ProtectedRouteUser from "./components/ProtectedRouteUser";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -74,9 +73,10 @@ function App() {
           <Route exact path="/signup">
             <Signup />
           </Route>
-          <ProtectedRouteUser exact path="/profile">
-            <MyProfile></MyProfile>{" "}
-          </ProtectedRouteUser>
+          <ProtectedRouteUser
+            path="/profile"
+            component={MyProfile}
+          ></ProtectedRouteUser>
 
           <Route exact path="/">
             <Home />

@@ -1,10 +1,13 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import "./SignupForm.css";
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment";
+import api from "../../API/listAPI";
+import { Alert } from "react-bootstrap";
 
 const SignupForm = (props) => {
   let {
@@ -13,28 +16,21 @@ const SignupForm = (props) => {
     control,
     formState: { errors },
   } = useForm();
-
-  const [birthday, setBirthday] = useState(new Date());
+  const [errorMessage, setErrorMessage] = useState(false);
+  let history = useHistory();
 
   const onSubmit = async function (data) {
     try {
-      console.log(data);
-      //   const res = await axiosInstance.post("/auth", data);
-      //   if (res.data.result) {
-      //     localStorage.token = res.data.data.accessToken;
-      //     const obj = parseJwt(res.data.data.accessToken);
-      //     localStorage.userId = obj.userId;
-      //     localStorage.username = obj.username;
-
-      //     props.setIsLogin(true);
-
-      //     history.push("/");
-      //   } else {
-      //     alert("Invalid login.");
-      //   }
+      data.birthday = moment(data.birthday).format("yyyy-MM-DD").toString();
+      const res = await api.register(data);
+      if (res.data.result) {
+        history.push("/login");
+      } else {
+        alert("Invalid register.");
+      }
     } catch (err) {
       if (err.response) {
-        // setErrorMessage(err.response.data.message);
+        setErrorMessage(err.response.data.message);
       } else if (err.request) {
         console.log(err.request);
       } else {
@@ -48,8 +44,21 @@ const SignupForm = (props) => {
       <form className="form-signup" onSubmit={handleSubmit(onSubmit)}>
         <h3>Register</h3>
 
+        {errorMessage ? (
+          <Alert
+            variant="warning"
+            onClose={() => setErrorMessage(false)}
+            dismissible
+          >
+            {errorMessage}
+          </Alert>
+        ) : null}
+
         <div className="form-group">
-          <label>Username</label>
+          <label>
+            Username
+            {errors.username && <span color="red">*</span>}
+          </label>
           <input
             type="text"
             className="form-control"
@@ -59,7 +68,10 @@ const SignupForm = (props) => {
         </div>
 
         <div className="form-group">
-          <label>Password</label>
+          <label>
+            Password
+            {errors.password && <span color="red">*</span>}
+          </label>
           <input
             type="password"
             className="form-control"
@@ -69,7 +81,10 @@ const SignupForm = (props) => {
         </div>
 
         <div className="form-group">
-          <label>Full name</label>
+          <label>
+            Full name
+            {errors.name && <span color="red">*</span>}
+          </label>
           <input
             type="text"
             className="form-control"
@@ -79,7 +94,10 @@ const SignupForm = (props) => {
         </div>
 
         <div className="form-group">
-          <label>Gender</label>
+          <label>
+            Gender
+            {errors.gender && <span color="red">*</span>}
+          </label>
           <Row>
             <Col>
               <input
@@ -112,7 +130,10 @@ const SignupForm = (props) => {
         </div>
 
         <div className="form-group">
-          <label>Email</label>
+          <label>
+            Email
+            {errors.email && <span color="red">*</span>}
+          </label>
           <input
             type="email"
             className="form-control"
@@ -121,7 +142,10 @@ const SignupForm = (props) => {
           />
         </div>
         <div className="form-group">
-          <label>Phone number</label>
+          <label>
+            Phone number
+            {errors.number && <span color="red">*</span>}
+          </label>
           <input
             type="number"
             className="form-control"
@@ -130,20 +154,27 @@ const SignupForm = (props) => {
           />
         </div>
         <div className="form-group">
-          <label>Birthday</label>
+          <label>
+            Birthday
+            {errors.birthday && <span color="red">*</span>}
+          </label>
           <div>
             <Controller
               control={control}
               name="birthday"
-              valueName="selected"
-              render={({ field: { onChange, onBlur, value, ref } }) => (
+              render={({ field }) => (
                 <DatePicker
                   className="form-control"
-                  dateFormat="yyyy-MM-dd"
-                  selected={birthday}
+                  placeholderText="Select date"
                   onChange={(date) => {
-                    setBirthday(date);
+                    field.onChange(date);
                   }}
+                  selected={
+                    field.value
+                      ? field.value
+                      : field.onChange(new Date("1999-01-01"))
+                  }
+                  dateFormat="yyyy-MM-dd"
                 />
               )}
             />
