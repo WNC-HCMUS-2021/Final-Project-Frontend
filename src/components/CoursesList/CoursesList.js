@@ -2,8 +2,9 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import "./CoursesList.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faStarHalfAlt, faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import Rating from '../Rating/Rating';
 
 const CoursesList = ({academy}) => {
   return (
@@ -16,7 +17,7 @@ const CoursesList = ({academy}) => {
                         {/* <Image src="https://i.ibb.co/ch8dHPv/4.jpg" thumbnail /> */}
                         <Link to={`/coursedetail/${academy.academy_id}`}>
                             <img className="card-img"
-                                src="https://i.ibb.co/85Ssw1y/1.png"
+                                src={academy.avatar}
                                 alt="" />
                         </Link>
                     </Col>
@@ -36,31 +37,9 @@ const CoursesList = ({academy}) => {
                             className="user-icon"
                             icon={faUserAlt} />
                             {/* {academy.teacher.name} */}
-                            Stephen Grider
+                            {" " + academy.teacher.name}
                         </div>
-                        <div>
-                            <span className="rating">
-                            {academy.rate}
-                            </span>
-                            <FontAwesomeIcon
-                            className="star-icon"
-                            icon={faStar} />
-                            <FontAwesomeIcon
-                            className="star-icon"
-                            icon={faStar} />
-                            <FontAwesomeIcon
-                            className="star-icon"
-                            icon={faStar} />
-                            <FontAwesomeIcon
-                            className="star-icon"
-                            icon={faStar} />
-                            <FontAwesomeIcon
-                            className="star-icon"
-                            icon={faStarHalfAlt} />
-                            <span className="student">
-                            ({academy.register})
-                            </span>
-                        </div>
+                        <Rating rate={academy.rate} register={academy.register} />
                         <button
                             className="badge-best-seller">
                             <b>Best-seller</b>
