@@ -16,6 +16,12 @@ const api = {
   updateProfile: (data) => {
     return axiosInstance.put("/user/update-profile", data);
   },
+  confirmEmail: (userId, code) => {
+    return axiosInstance.post(`/auth/verify/${userId}/${code}`);
+  },
+  resendConfirmEmail: () => {
+    return axiosInstance.get("user/resend-confirm-email");
+  },
 };
 
 export default api;

@@ -38,7 +38,7 @@ const Profile = (props) => {
       res.data.birthday = moment(res.data.birthday)
         .format("DD/MM/YYYY")
         .toString();
-      profile = setProfile(res.data);
+      setProfile(res.data);
     } else {
       alert("Invalid login.");
     }
