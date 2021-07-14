@@ -18,7 +18,12 @@ export const academyListSearchReducer = (state = { loading: true, academys: [] }
       case ACADEMY_LIST_SEARCH_REQUEST:
           return { loading: true };
       case ACADEMY_LIST_SEARCH_SUCCESS:
-          return { loading: false, academys: action.payload };
+          return { 
+            loading: false, 
+            academys: action.payload.listAcademy,
+            pages: action.payload.pages,
+            page: action.payload.page,
+          };
       case ACADEMY_LIST_SEARCH_FAIL:
           return { loading: false, error: action.payload };
       default:
@@ -31,7 +36,12 @@ export const academyListSearchCategoryReducer = (state = { loading: true, academ
       case ACADEMY_LIST_SEARCH_CATEGORY_REQUEST:
           return { loading: true };
       case ACADEMY_LIST_SEARCH_CATEGORY_SUCCESS:
-          return { loading: false, academys: action.payload };
+        return { 
+          loading: false, 
+          academys: action.payload.listAcademy,
+          pages: action.payload.pages,
+          page: action.payload.page,
+        };
       case ACADEMY_LIST_SEARCH_CATEGORY_FAIL:
           return { loading: false, error: action.payload };
       default:
