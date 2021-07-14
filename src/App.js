@@ -19,6 +19,8 @@ import ProtectedRouteUser from "./components/ProtectedRouteUser";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import MyProfile from "./pages/MyProfile";
+import CheckEmailPage from "./pages/CheckEmailPage";
+import ConfirmEmail from "./components/User/ConfirmEmail/ConfirmEmail";
 
 function App() {
   const [isLogin, setIsLogin] = useState(localStorage.username ? true : false);
@@ -73,11 +75,18 @@ function App() {
           <Route exact path="/signup">
             <Signup />
           </Route>
+          <Route exact path="/confirm-email">
+            <CheckEmailPage />
+          </Route>
+          <Route
+            path="/verify/:userId/:code"
+            component={ConfirmEmail}
+            exact
+          ></Route>
           <ProtectedRouteUser
             path="/profile"
             component={MyProfile}
           ></ProtectedRouteUser>
-
           <Route exact path="/">
             <Home />
           </Route>
