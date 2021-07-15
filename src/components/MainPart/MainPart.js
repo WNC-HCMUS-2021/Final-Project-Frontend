@@ -31,7 +31,6 @@ const MainPart = () => {
   const dispatch = useDispatch();
   const academyList = useSelector((state) => state.academyList);
   const { loading, error, academys } = academyList; 
-  console.log(academyList);
   useEffect(() => {
     dispatch(listAcademys);
   }, [dispatch]);
