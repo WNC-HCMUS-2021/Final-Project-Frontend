@@ -1,21 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Banner from "./Banner";
 import Description from "./Description";
 import MoreCourses from "./MoreCourses";
-import { createReview } from "../actions/academyActions";
+import { createReview, detailsAcademy, getReviews } from "../actions/academyActions";
 import { useSelector, useDispatch } from "react-redux";
 import MessageBox from "../MessageBox";
 import LoadingBox from "../LoadingBox";
+import { ACADEMY_REVIEW_CREATE_RESET } from "../../constants/academyConstants";
+import Rating from "../Rating/Rating";
+import { Container } from "react-bootstrap";
 
 export default function SingleCourse({academy}) {
   const academyId = academy.academy_id.toString();
-  const dispatch = useDispatch();
   const userToken = '' + localStorage.token;
+
+  const dispatch = useDispatch();
   const academyReviewCreate = useSelector((state) => state.academyReviewCreate);
-  const {loading, error } = academyReviewCreate;
+  const {loading, error, success } = academyReviewCreate;
+
+  const academyReviews = useSelector((state) => state.academyReviews);
+  const {loading: loadingReviews, error: errorReviews, reviews } = academyReviews;
+  console.log(academyReviews);
 
   const [point, setPoint] = useState(0);
   const [comment, setComment] = useState('');
+
+  useEffect(() => {
+    dispatch(getReviews(academyId));
+  }, [dispatch, academyId]);
+
+  useEffect(() => {
+    if (success) {
+      window.alert('Review Submitted Successfully');
+      setPoint('');
+      setComment('');
+      dispatch({ type: ACADEMY_REVIEW_CREATE_RESET });
+      dispatch(detailsAcademy(academyId));
+    }
+  }, [dispatch, academyId, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -34,50 +56,79 @@ export default function SingleCourse({academy}) {
       <Banner academy={academy}/>
       <Description academy={academy}/>
       <MoreCourses academy={academy}/>
-      <li>
-        <form className="form" onSubmit={submitHandler}>
-          <div>
-            <h2>Review Course</h2>
-          </div>
-          <div>
-            <label htmlFor="rating">Rating</label>
-            <select
-              id="rating"
-              value={point}
-              onChange={(e) => setPoint(e.target.value)}
-            >
-              <option value="">Select...</option>
-              <option value="1">1- Poor</option>
-              <option value="2">2- Fair</option>
-              <option value="3">3- Good</option>
-              <option value="4">4- Very good</option>
-              <option value="5">5- Excelent</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="comment">Comment</label>
-            <textarea
-              id="comment"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            ></textarea>
-          </div>
-          <div>
-            <label />
-            <button className="primary" type="submit">
-              Leave a rating
-            </button>
-          </div>
-          <div>
-            {loading && <LoadingBox></LoadingBox>}
-            {error && (
-              <MessageBox variant="danger">
-                {error}
-              </MessageBox>
-            )}
-          </div>
-        </form>
-      </li>
+      <Container>
+        <div>
+          <h2 className="left">Reviews</h2>
+          {loadingReviews ? (
+            <LoadingBox></LoadingBox>
+          ) : errorReviews ? (
+            <MessageBox>{error}</MessageBox>
+          ) : (
+            <>
+              {reviews.length <= 0 && (
+                <MessageBox>There is no review</MessageBox>
+              )}
+              <div>
+                {reviews.map((review) => (
+                  <div key={review.academy_rate_id} className="left">
+                    <strong>{review.student.name + " "}</strong><span><i>{review.created_at.substring(0, 10)}</i></span>
+                    <Rating rate={review.point} cap=" "></Rating>
+                    <p>{review.comment}</p>
+                  </div>
+                ))}
+                <div>
+                  <form className="form" onSubmit={submitHandler} style={{width: "40%"}}>
+                    <div>
+                      <h2>Review Course</h2>
+                    </div>
+                    <div>
+                      <label htmlFor="rating" className="left">Rating:</label>
+                      <select
+                        id="rating"
+                        value={point}
+                        onChange={(e) => setPoint(e.target.value)}
+                        style={{height: "30px", borderRadius: "0.3rem"}}
+                      >
+                        <option value="">Select...</option>
+                        <option value="1">1 - Poor</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="3">3 - Good</option>
+                        <option value="4">4 - Very good</option>
+                        <option value="5">5 - Excelent</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label htmlFor="comment" className="left">Comment:</label>
+                      <textarea
+                        id="comment"
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                        placeholder="Write your comment here..."
+                        style={{height: "80px", borderRadius: "0.3rem"}}
+                      ></textarea>
+                    </div>
+                    <div>
+                      <label />
+                      <button className="primary mb-3" type="submit" style={{borderRadius: "0.3rem", fontSize: "1.2rem"}}>
+                        Leave a rating
+                      </button>
+                    </div>
+                    <div>
+                      {loading && <LoadingBox></LoadingBox>}
+                      {error && (
+                        <MessageBox variant="danger">
+                          {error}
+                        </MessageBox>
+                      )}
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </>
+          )
+          }
+        </div>
+      </Container>
     </>
   );
 }

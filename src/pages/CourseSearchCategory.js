@@ -67,7 +67,7 @@ const CourseSearchCategory = () => {
                                             onChange={(e) => {
                                                 history.push(getFilterUrl({ order: e.target.value }));
                                             }}
-                                            style={{height: "30px"}}
+                                            style={{height: "30px", borderRadius: "0.3rem"}}
                                         >
                                             <option value="lowtohigh">Price: Low to High</option>
                                             <option value="hightolow">Price: High to Low</option>

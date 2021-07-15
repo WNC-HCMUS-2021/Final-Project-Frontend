@@ -12,11 +12,11 @@ import Carousel from "react-multi-carousel";
 
 export default function MoreCourses({academy}) {
   const academyId = academy.academy_id;
-  console.log("academyId: " + academyId);
+  // console.log("academyId: " + academyId);
   const dispatch = useDispatch();
   const academyListRelated = useSelector((state) => state.academyListRelated);
   const { loading, error, academys } = academyListRelated; 
-  console.log(academyListRelated);
+  // console.log(academyListRelated);
   useEffect(() => {
     dispatch(listRelatedAcademys(academyId));
   }, [dispatch, academyId]);
