@@ -8,6 +8,7 @@ import { removeFromCart, registerFromCart } from '../components/actions/cartActi
 import { useHistory } from "react-router-dom";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import { CART_REGISTER_ITEMS_RESET } from '../constants/cartConstants';
 
 
 function Cart() {
@@ -40,7 +41,8 @@ function Cart() {
     useEffect(() => {
         if (success) {
             window.alert('Course(s) Registered Successfully!!!');
-            history.push("/"); // nen redirect về trang mylearning va phai hardreload thi localStorage moi cap nhat gio hang da xoa
+            dispatch({ type: CART_REGISTER_ITEMS_RESET });
+            history.push("/cart"); // nen redirect ve trang mylearning
         }
     }, [dispatch, success, history]);
 

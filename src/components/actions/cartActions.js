@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CART_ADD_ITEM, CART_REGISTER_ITEMS_FAIL, CART_REGISTER_ITEMS_REQUEST, CART_REGISTER_ITEMS_SUCCESS, CART_REMOVE_ITEM } from "../../constants/cartConstants";
+import { CART_ADD_ITEM, CART_EMPTY, CART_REGISTER_ITEMS_FAIL, CART_REGISTER_ITEMS_REQUEST, CART_REGISTER_ITEMS_SUCCESS, CART_REMOVE_ITEM } from "../../constants/cartConstants";
 
 export const addToCart = (academyId) => async (dispatch, getState) => {
     const res = await axios.get(`http://localhost:5000/api/academy/detail/${academyId}`);
@@ -34,12 +34,11 @@ export const registerFromCart = (userToken, listAcademy) => async (dispatch, get
                 headers: { "x-access-token": userToken},
             }
         );
-        
         dispatch({
             type: CART_REGISTER_ITEMS_SUCCESS,
             payload: data.message,
         });
-
+        dispatch({ type: CART_EMPTY });
         localStorage.removeItem('cartItems');
     } catch (error) {
         dispatch({ type: CART_REGISTER_ITEMS_FAIL, payload: error.message });
