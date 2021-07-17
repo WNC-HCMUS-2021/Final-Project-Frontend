@@ -69,7 +69,7 @@ function Cart() {
                                                                 <FontAwesomeIcon
                                                                 className="user-icon"
                                                                 icon={faUserAlt} />
-                                                                Stephen Grider
+                                                                    {" " + item.teacher.name}
                                                             </div>
                                                         </Col>
                                                         <Col xs={3}>
