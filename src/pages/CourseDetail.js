@@ -16,7 +16,7 @@ function CourseDetail(props) {
         dispatch(detailsAcademy(academyId));
     }, [dispatch, academyId]);
 
-    console.log(academy);
+    // console.log(academy);
 
     return (
         <div>

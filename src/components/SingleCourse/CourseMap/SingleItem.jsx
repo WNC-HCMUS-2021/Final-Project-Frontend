@@ -1,7 +1,7 @@
 import React from "react";
 import Icons from "../../common/Icons";
 
-const SingleItem = () => {
+const SingleItem = ({outline}) => {
   return (
     <li className="w-100">
       <div
@@ -17,11 +17,10 @@ const SingleItem = () => {
                 icon="play"
                 className="mr-2"
               />
-
-              "1. What Is React?"
+              {outline.title}
             </p>
             <small className="text-muted">
-              video
+              {outline.content}
             </small>
           </div>
         {/* </Link> */}

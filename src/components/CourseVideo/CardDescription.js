@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function CardDescription() {
+export default function CardDescription({outlineDetail}) {
   // const pic_url = author.user_pic ? author.user_pic : "/img/noPic.jpg";
 
   return (
     <>
-      <h1 className="h4 mb-0 mt-3" style={{textAlign: "left"}}>1. What is React?</h1>
+      <h1 className="h4 mb-0 mt-3" style={{textAlign: "left"}}>{outlineDetail.title}</h1>
       <div className="teacher d-flex align-items-center mt-3">
         <img
           alt="author name"
@@ -15,15 +15,15 @@ export default function CardDescription() {
         />
         <div className="ml-2">
           <h6 className="mb-0 text-shadow">
-            <strong>Stephen Grider</strong>
+            <strong>{outlineDetail.teacher.name}</strong>
           </h6>
           <p className="small my-0 text-muted">
-            Fullstack developer
+            Web developer
           </p>
         </div>
       </div>
       
-      <p className="mt-3" style={{textAlign: "left"}}>This video gonna show you what React in real world is. React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable and easier to debug.(Unit description)</p>
+      <p className="mt-3" style={{textAlign: "left"}}>{outlineDetail.description}</p>
       
     </>
   );

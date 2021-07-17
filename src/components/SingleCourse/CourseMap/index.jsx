@@ -1,31 +1,23 @@
 import React from "react";
+import { useState } from "react";
 import FrameCollapsable from "./FrameCollapsable";
 import SingleSeparator from "./SingleSeparator";
 
 // Ref: OpenAcademy
-class CourseMap extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      col_0: true,
-    };
-  }
+const CourseMap = ({academyId}) => {
+  const [isOpen, setIsOpen] = useState(true);
 
-  render() {
-    return (
-      <>
-        <SingleSeparator
-          title={"Course Content"}
-          currentSection={0}
-          active={this.state.col_0}
-          onClick={() => {
-            this.setState({ col_0: !this.state.col_0 });
-          }}
-        />
-        <FrameCollapsable active={this.state.col_0} />
-      </>
-    )
-  }
-}
+  return (
+    <>
+      <SingleSeparator
+        title={"Course Content"}
+        currentSection={0}
+        active={isOpen}
+        onClick={() => setIsOpen(!isOpen) }
+      />
+      <FrameCollapsable active={isOpen} academyId={academyId} />
+    </>
+  );
+};
 
 export default CourseMap;

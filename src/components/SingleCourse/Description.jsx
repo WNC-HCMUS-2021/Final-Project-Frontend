@@ -25,7 +25,7 @@ export default function Description({academy}) {
             </h3>
           </div>
           <div className="border mt-2">
-            <CourseMap />
+            <CourseMap academyId={academy.academy_id} />
           </div>
         </div>
       </Row>

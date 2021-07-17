@@ -21,6 +21,8 @@ import Signup from "./pages/Signup";
 import MyProfile from "./pages/MyProfile";
 import CheckEmailPage from "./pages/CheckEmailPage";
 import ConfirmEmail from "./components/User/ConfirmEmail/ConfirmEmail";
+import CourseVideo from "./components/CourseVideo/index";
+
 
 function App() {
   const [isLogin, setIsLogin] = useState(localStorage.username ? true : false);
@@ -69,6 +71,11 @@ function App() {
           <Route exact path="/coursevideo">
             <CourseVideoPage />
           </Route>
+          <Route
+            path="/coursevideo/academy/:academyId/outline/:outlineId"
+            component={CourseVideo}
+            exact
+          ></Route>
           <Route exact path="/login">
             <Login {...{ isLogin, setIsLogin }} />
           </Route>
