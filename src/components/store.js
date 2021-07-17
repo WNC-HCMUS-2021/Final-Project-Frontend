@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { academyListReducer, academyDetailsReducer, academyListSearchReducer, academyCategoryListReducer, academyListSearchCategoryReducer, academyListRelatedReducer } from './reducers/academyReducers';
+import { academyListReducer, academyDetailsReducer, academyListSearchReducer, academyCategoryListReducer, academyListSearchCategoryReducer, academyListRelatedReducer, academyReviewCreateReducer, academyReviewsReducer } from './reducers/academyReducers';
 import { cartReducer } from './reducers/cartReducers';
 
 const initialState = {
@@ -15,7 +15,9 @@ const reducer = combineReducers({
     academyCategoryList: academyCategoryListReducer,
     academyDetails: academyDetailsReducer,
     academyListRelated: academyListRelatedReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    academyReviewCreate: academyReviewCreateReducer,
+    academyReviews: academyReviewsReducer
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
