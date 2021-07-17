@@ -52,29 +52,6 @@ const MainPart = () => {
         <div className="course-item">
           <h5 className="mb-2" style={{float: 'left'}}> 
             <Icons icon="eye" className="mr-2 text-danger" />
-            Most-registered categories:
-          </h5>
-          <br />
-          <br />
-          <Container>
-            {academys.listCate.map(function(object, i){
-                return (
-                  <span key={object.academy_category_id}>
-                    <Button onClick={() => history.push(`/search/category/${object.academy_category_id}`)} variant={buttonVariant[i]} style={{width: "24%"}}>{object.academy_category_name}</Button>{' '}
-                  </span>
-                );
-            })}
-            {/* <Button variant="primary" style={{width: "24%"}}>Primary</Button>{' '}
-            <Button variant="danger" style={{width: "24%"}}>Secondary</Button>{' '}
-            <Button variant="success" style={{width: "24%"}}>Success</Button>{' '}
-            <Button variant="warning" style={{width: "24%"}}>Warning</Button>{' '} */}
-          </Container>
-          <br />
-          <br />
-        </div>
-        <div className="course-item">
-          <h5 className="mb-2" style={{float: 'left'}}> 
-            <Icons icon="eye" className="mr-2 text-danger" />
             Most-watched courses:
           </h5>
           <Carousel
@@ -129,6 +106,30 @@ const MainPart = () => {
               ))
             }
           </Carousel>
+        </div>
+
+        <div className="course-item">
+          <h5 className="mb-2" style={{float: 'left'}}> 
+            <Icons icon="eye" className="mr-2 text-danger" />
+            Most-registered categories:
+          </h5>
+          <br />
+          <br />
+          <Container>
+            {academys.listCate.map(function(object, i){
+                return (
+                  <span key={object.academy_category_id}>
+                    <Button onClick={() => history.push(`/search/category/${object.academy_category_id}`)} variant={buttonVariant[i]} style={{width: "24%", height: "70px"}}>{object.academy_category_name}</Button>{' '}
+                  </span>
+                );
+            })}
+            {/* <Button variant="primary" style={{width: "24%"}}>Primary</Button>{' '}
+            <Button variant="danger" style={{width: "24%"}}>Secondary</Button>{' '}
+            <Button variant="success" style={{width: "24%"}}>Success</Button>{' '}
+            <Button variant="warning" style={{width: "24%"}}>Warning</Button>{' '} */}
+          </Container>
+          <br />
+          <br />
         </div>
 
         
