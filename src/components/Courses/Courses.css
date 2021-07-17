@@ -36,6 +36,12 @@
   background-color: #FFE799;
   color:rgb(27, 25, 25);
 }
+
+.badge-best-seller{
+  background-color: #FFE799;
+  color:rgb(27, 25, 25);
+  border-radius: 5px;
+}
 .enroll-course{
   width: 60%;
   margin: auto;
