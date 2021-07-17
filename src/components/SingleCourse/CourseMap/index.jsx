@@ -4,7 +4,7 @@ import FrameCollapsable from "./FrameCollapsable";
 import SingleSeparator from "./SingleSeparator";
 
 // Ref: OpenAcademy
-const CourseMap = ({academyId}) => {
+const CourseMap = ({academyId, currentId}) => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -15,7 +15,7 @@ const CourseMap = ({academyId}) => {
         active={isOpen}
         onClick={() => setIsOpen(!isOpen) }
       />
-      <FrameCollapsable active={isOpen} academyId={academyId} />
+      <FrameCollapsable active={isOpen} academyId={academyId} currentId={currentId} />
     </>
   );
 };

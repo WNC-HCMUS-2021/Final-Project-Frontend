@@ -32,7 +32,7 @@ function Banner(props) {
         <div className="row pt-5 d-flex" style={{ zIndex: 1 }}>
           <div className="col-12 col-md-6">
             <div className="shape-before">
-              <Link to="/coursevideo">
+              <Link to={`/coursevideo`}>
                 <Card.Img
                   className="shadow-lg"
                   style={{

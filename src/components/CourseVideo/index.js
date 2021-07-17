@@ -39,7 +39,7 @@ const CourseVideo = () => {
                 
               </Col>
               <Col xs={3}>
-                <CourseMap academyId={academyId}/>
+                <CourseMap academyId={academyId} currentId={outlineId} />
               </Col>
               </>
             )
