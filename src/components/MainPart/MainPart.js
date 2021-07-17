@@ -8,6 +8,8 @@ import LoadingBox from '../LoadingBox';
 import MessageBox from '../MessageBox';
 import { useDispatch, useSelector } from 'react-redux';
 import { listAcademys } from '../actions/academyActions';
+import Button from 'react-bootstrap/Button';
+import { useHistory } from 'react-router';
 
 const MainPart = () => {
   const responsive = {
@@ -27,6 +29,8 @@ const MainPart = () => {
       paritialVisibilityGutter: 30
     }
   };
+  let history = useHistory();
+  const buttonVariant = ["primary", "danger", "success", "warning", "info", "secondary"];
 
   const dispatch = useDispatch();
   const academyList = useSelector((state) => state.academyList);
@@ -45,6 +49,29 @@ const MainPart = () => {
       <MessageBox>{error}</MessageBox>
     ) : (
       <>
+        <div className="course-item">
+          <h5 className="mb-2" style={{float: 'left'}}> 
+            <Icons icon="eye" className="mr-2 text-danger" />
+            Most-registered categories:
+          </h5>
+          <br />
+          <br />
+          <Container>
+            {academys.listCate.map(function(object, i){
+                return (
+                  <span key={object.academy_category_id}>
+                    <Button onClick={() => history.push(`/search/category/${object.academy_category_id}`)} variant={buttonVariant[i]} style={{width: "24%"}}>{object.academy_category_name}</Button>{' '}
+                  </span>
+                );
+            })}
+            {/* <Button variant="primary" style={{width: "24%"}}>Primary</Button>{' '}
+            <Button variant="danger" style={{width: "24%"}}>Secondary</Button>{' '}
+            <Button variant="success" style={{width: "24%"}}>Success</Button>{' '}
+            <Button variant="warning" style={{width: "24%"}}>Warning</Button>{' '} */}
+          </Container>
+          <br />
+          <br />
+        </div>
         <div className="course-item">
           <h5 className="mb-2" style={{float: 'left'}}> 
             <Icons icon="eye" className="mr-2 text-danger" />

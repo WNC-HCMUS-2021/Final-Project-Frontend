@@ -10,13 +10,15 @@ export const listAcademys = async (dispatch) => {
         const resOutstanding = await axios.get("http://localhost:5000/api/academy/top4highlight");
         const resMostView = await axios.get("http://localhost:5000/api/academy/top10view");
         const resLatest = await axios.get("http://localhost:5000/api/academy/top10latest");
+        const resCate = await axios.get("http://localhost:5000/api/category/top4category");
         dispatch({
             type: ACADEMY_LIST_SUCCESS, 
             payload: {
                 listAll: resAll.data.data,
                 listOutstanding: resOutstanding.data.data,
                 listMostView: resMostView.data.data,
-                listLatest: resLatest.data.data
+                listLatest: resLatest.data.data,
+                listCate: resCate.data.data
             }
         });
     } catch (err) {
