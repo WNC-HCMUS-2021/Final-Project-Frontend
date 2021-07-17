@@ -3,7 +3,7 @@ import YouTube from "react-youtube";
 import Vimeo from "@u-wave/react-vimeo";
 import "./Video.css"
 
-const Video = () => {
+const Video = ({url}) => {
   let id = null;
 
   const _onReady = (event) => {
@@ -13,7 +13,7 @@ const Video = () => {
 
   // const src = "https://www.youtube.com/watch?v=dOUj7zzd_98";
   // const src = "https://www.youtube.com/watch?v=GgFIjQzfWjA";
-  const src = "https://www.youtube.com/watch?v=ECxVfrwwTp0";
+  const src = url;
 
 
   if (src.startsWith("https://www.youtube.com/watch")) {

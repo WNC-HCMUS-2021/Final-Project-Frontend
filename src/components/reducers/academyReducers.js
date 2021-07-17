@@ -1,4 +1,4 @@
-import { ACADEMY_CATEGORY_LIST_FAIL, ACADEMY_CATEGORY_LIST_REQUEST, ACADEMY_CATEGORY_LIST_SUCCESS, ACADEMY_DETAILS_FAIL, ACADEMY_DETAILS_REQUEST, ACADEMY_DETAILS_SUCCESS, ACADEMY_LIST_FAIL, ACADEMY_LIST_RELATED_FAIL, ACADEMY_LIST_RELATED_REQUEST, ACADEMY_LIST_RELATED_SUCCESS, ACADEMY_LIST_REQUEST, ACADEMY_LIST_SEARCH_CATEGORY_FAIL, ACADEMY_LIST_SEARCH_CATEGORY_REQUEST, ACADEMY_LIST_SEARCH_CATEGORY_SUCCESS, ACADEMY_LIST_SEARCH_FAIL, ACADEMY_LIST_SEARCH_REQUEST, ACADEMY_LIST_SEARCH_SUCCESS, ACADEMY_LIST_SUCCESS, ACADEMY_REVIEW_CREATE_FAIL, ACADEMY_REVIEW_CREATE_REQUEST, ACADEMY_REVIEW_CREATE_RESET, ACADEMY_REVIEW_CREATE_SUCCESS, ACADEMY_REVIEW_GET_FAIL, ACADEMY_REVIEW_GET_REQUEST, ACADEMY_REVIEW_GET_SUCCESS, , ACADEMY_WATCHLIST_CREATE_FAIL, ACADEMY_WATCHLIST_CREATE_REQUEST, ACADEMY_WATCHLIST_CREATE_SUCCESS } from "../../constants/academyConstants";
+import { ACADEMY_CATEGORY_LIST_FAIL, ACADEMY_CATEGORY_LIST_REQUEST, ACADEMY_CATEGORY_LIST_SUCCESS, ACADEMY_DETAILS_FAIL, ACADEMY_DETAILS_REQUEST, ACADEMY_DETAILS_SUCCESS, ACADEMY_LIST_FAIL, ACADEMY_LIST_RELATED_FAIL, ACADEMY_LIST_RELATED_REQUEST, ACADEMY_LIST_RELATED_SUCCESS, ACADEMY_LIST_REQUEST, ACADEMY_LIST_SEARCH_CATEGORY_FAIL, ACADEMY_LIST_SEARCH_CATEGORY_REQUEST, ACADEMY_LIST_SEARCH_CATEGORY_SUCCESS, ACADEMY_LIST_SEARCH_FAIL, ACADEMY_LIST_SEARCH_REQUEST, ACADEMY_LIST_SEARCH_SUCCESS, ACADEMY_LIST_SUCCESS, ACADEMY_REVIEW_CREATE_FAIL, ACADEMY_REVIEW_CREATE_REQUEST, ACADEMY_REVIEW_CREATE_RESET, ACADEMY_REVIEW_CREATE_SUCCESS, ACADEMY_REVIEW_GET_FAIL, ACADEMY_REVIEW_GET_REQUEST, ACADEMY_REVIEW_GET_SUCCESS, , ACADEMY_WATCHLIST_CREATE_FAIL, ACADEMY_WATCHLIST_CREATE_REQUEST, ACADEMY_WATCHLIST_CREATE_SUCCESS, ACADEMY_OUTLINE_DETAIL_FAIL, ACADEMY_OUTLINE_DETAIL_REQUEST, ACADEMY_OUTLINE_DETAIL_SUCCESS, ACADEMY_OUTLINE_FAIL, ACADEMY_OUTLINE_REQUEST, ACADEMY_OUTLINE_SUCCESS } from "../../constants/academyConstants";
 
 export const academyListReducer = (state = { loading: true, academys: [] }, action) => {
     switch (action.type) {
@@ -80,14 +80,40 @@ export const academyDetailsReducer = (state = { academy: {}, loading: true}, act
 
 export const academyListRelatedReducer = (state = { loading: true, academys: [] }, action) => {
   switch (action.type) {
-      case ACADEMY_LIST_RELATED_REQUEST:
-          return { loading: true };
-      case ACADEMY_LIST_RELATED_SUCCESS:
-          return { loading: false, academys: action.payload };
-      case ACADEMY_LIST_RELATED_FAIL:
-          return { loading: false, error: action.payload };
-      default:
-          return state;
+    case ACADEMY_LIST_RELATED_REQUEST:
+      return { loading: true };
+    case ACADEMY_LIST_RELATED_SUCCESS:
+      return { loading: false, academys: action.payload };
+    case ACADEMY_LIST_RELATED_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+}
+
+export const academyListOutlineReducer = (state = { loading: true, outlines: [] }, action) => {
+  switch (action.type) {
+    case ACADEMY_OUTLINE_REQUEST:
+      return { loading: true };
+    case ACADEMY_OUTLINE_SUCCESS:
+      return { loading: false, outlines: action.payload };
+    case ACADEMY_OUTLINE_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+}
+
+export const outlineDetailReducer = (state = { outline: {}, loading: true}, action) => {
+  switch (action.type) {
+    case ACADEMY_OUTLINE_DETAIL_REQUEST:
+      return { loading: true };
+    case ACADEMY_OUTLINE_DETAIL_SUCCESS:
+      return { loading: false, outline: action.payload };
+    case ACADEMY_OUTLINE_DETAIL_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
   }
 }
 

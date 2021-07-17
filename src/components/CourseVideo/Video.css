@@ -6,13 +6,13 @@
   
   @media only screen and (min-width: 400px) {
     .video-container {
-      height: 400px
+      height: 500px
     }
   }
   
   @media only screen and (min-width: 600px) {
     .video-container {
-      height: 450px
+      height: 500px
     }
   }
   

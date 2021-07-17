@@ -12,7 +12,6 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import CourseVideoPage from "./pages/CourseVideoPage";
 import Cart from "./pages/Cart";
 import CourseSearchCategory from "./pages/CourseSearchCategory";
 import ProtectedRouteUser from "./components/ProtectedRouteUser";
@@ -21,6 +20,8 @@ import Signup from "./pages/Signup";
 import MyProfile from "./pages/MyProfile";
 import CheckEmailPage from "./pages/CheckEmailPage";
 import ConfirmEmail from "./components/User/ConfirmEmail/ConfirmEmail";
+import CourseVideo from "./pages/CourseVideo";
+
 
 function App() {
   const [isLogin, setIsLogin] = useState(localStorage.username ? true : false);
@@ -66,9 +67,16 @@ function App() {
           <Route exact path="/cart">
             <Cart />
           </Route>
-          <Route exact path="/coursevideo">
-            <CourseVideoPage />
-          </Route>
+          <Route
+            path="/coursevideo/academy/:academyId/outline/:outlineId"
+            component={CourseVideo}
+            exact
+          ></Route>
+          <Route
+            path="/coursevideo/academy/:academyId"
+            component={CourseVideo}
+            exact
+          ></Route>
           <Route exact path="/login">
             <Login {...{ isLogin, setIsLogin }} />
           </Route>
