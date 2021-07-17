@@ -17,7 +17,7 @@ const CoursesList = ({academy}) => {
                         {/* <Image src="https://i.ibb.co/ch8dHPv/4.jpg" thumbnail /> */}
                         <Link to={`/coursedetail/${academy.academy_id}`}>
                             <img className="card-img"
-                                src={academy.avatar}
+                                src={academy.avatar || "/no-image.png"}
                                 alt="" />
                         </Link>
                     </Col>
@@ -40,10 +40,13 @@ const CoursesList = ({academy}) => {
                             {" " + academy.teacher.name}
                         </div>
                         <Rating rate={academy.rate} register={academy.register} />
-                        <button
-                            className="badge-best-seller">
-                            <b>Best-seller</b>
-                        </button>
+                        {academy.register >= 5 ? (
+                            <button
+                                className="badge-best-seller">
+                                <b>Best-seller</b>
+                            </button>
+                        ) : null}
+                        
                     </Col>
                     <Col className="price-course-list">
                         <div className="price-discount-course-list">

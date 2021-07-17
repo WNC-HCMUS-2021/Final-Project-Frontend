@@ -4,7 +4,7 @@ import './Footer.css';
 const Footer = () => {
   return (
     <>
-        <div>
+        <div className="mt-5">
             <meta charSet="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <title>Untitled</title>
@@ -40,7 +40,7 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="col-lg-3 item social"><a href="/#"><i className="icon ion-social-facebook" /></a><a href="/#"><i className="icon ion-social-twitter" /></a><a href="/#"><i className="icon ion-social-snapchat" /></a><a href="/#"><i className="icon ion-social-instagram" /></a>
-                        <p className="copyright">Company Name © 2018</p>
+                        <p className="copyright">Dream Team WebNC © 2021</p>
                     </div>
                     </div>
                 </div>

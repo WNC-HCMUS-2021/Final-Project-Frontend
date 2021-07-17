@@ -11,6 +11,7 @@ export const addToCart = (academyId) => async (dispatch, getState) => {
             price_discount: res.data.data.price_discount,
             price: res.data.data.price,
             academy: res.data.data.academy_id,
+            teacher: res.data.data.teacher
         }
     });
     localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));

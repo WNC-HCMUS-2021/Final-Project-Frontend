@@ -48,6 +48,10 @@
     color:rgb(27, 25, 25);
     border-radius: 5px;
   }
+
+  .card-body .card-img {
+    max-height: 130px;
+  }
   
   
   

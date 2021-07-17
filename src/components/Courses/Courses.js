@@ -30,7 +30,7 @@ const Courses = ({ academy }) => {
             </Link>
             <Link to={`/coursedetail/${academy.academy_id}`}>
               <img className="card-img"
-                src={academy.avatar}
+                src={academy.avatar || "/no-image.png"} 
                 alt="" />
             </Link>
             <div className="card-text">
@@ -47,6 +47,16 @@ const Courses = ({ academy }) => {
               <span className="price-original-course-list ml-2">
                   ${academy.price}
               </span>
+              {academy.register >= 5 ? (
+                <button
+                className="badge-best-seller"
+                style={{float: "right"}}
+                >
+                  
+                  Best-seller
+                </button>
+              ) : null}
+              
               {/* <p className="duration-course">
                 4 months 10hours/week
               </p>
@@ -60,7 +70,7 @@ const Courses = ({ academy }) => {
             </div>
             {/* enroll button */}
             <button
-              className="enroll-course mt-2"
+              className="enroll-course mt-3"
               type="button"
               onClick={addToCartHandler}
             >
