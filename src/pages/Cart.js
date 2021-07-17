@@ -1,19 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserAlt, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from "react-redux";
+import { removeFromCart, registerFromCart } from '../components/actions/cartActions';
+import { useHistory } from "react-router-dom";
+import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { removeFromCart } from '../components/actions/cartActions';
+import { CART_REGISTER_ITEMS_RESET } from '../constants/cartConstants';
+
 
 function Cart() {
+    let history = useHistory();
     const cart = useSelector((state) => state.cart);
-    const { cartItems } = cart; 
+    const { cartItems } = cart;
+
     const dispatch = useDispatch();
     const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id));
     }
+
+    const courseRegister = useSelector((state) => state.courseRegister);
+    const { loading , success, error } = courseRegister;
+    const registerHandler = () => {
+        const userToken = localStorage.token;
+        const itemInCarts = JSON.parse(localStorage.getItem("cartItems"));
+        const itemArr = [];
+        for (let i = 0; i < itemInCarts.length; i++) {
+            itemArr.push({"academy_id": itemInCarts[i].academy})
+        }
+        const itemToPost = {
+            "listAcademy": itemArr,
+        };  
+        dispatch(registerFromCart(userToken, itemToPost));
+        // console.log(itemToPost);
+        // history.push("/");
+    }
+
+    useEffect(() => {
+        if (success) {
+            window.alert('Course(s) Registered Successfully!!!');
+            dispatch({ type: CART_REGISTER_ITEMS_RESET });
+            history.push("/cart"); // nen redirect ve trang mylearning
+        }
+    }, [dispatch, success, history]);
 
     return (
         <>
@@ -102,9 +133,11 @@ function Cart() {
                                             </h2>
                                         </Row>
                                         <Row>
-                                            <button className="btn btn-success" style={{width: "200px"}}>
+                                            <button onClick={registerHandler} className="btn btn-success mb-2" style={{width: "200px"}}>
                                                 <FontAwesomeIcon icon={faCheckSquare} /> Buy Course(s)
                                             </button>
+                                            {loading && <LoadingBox></LoadingBox>}
+                                            {error && <MessageBox>{error}</MessageBox>}
                                         </Row>
                                     </div>
                                 </Col>

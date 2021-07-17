@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faHeart } from '@fortawesome/free-solid-svg-icons';
 import "./SingleCourse.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../actions/cartActions";
 import Rating from "../Rating/Rating";
+import { addToWatchList } from "../actions/academyActions";
+import LoadingBox from "../LoadingBox";
+import MessageBox from "../MessageBox";
 
 function Banner(props) {
   // const pic_url = author.user_pic ? author.user_pic : "/img/noPic.jpg";
@@ -19,6 +22,24 @@ function Banner(props) {
       dispatch(addToCart(academyId));
     }
   }
+
+  const addToWatchListHandler = () => {
+    const userToken = localStorage.token;
+    if (academyId) {
+      dispatch(addToWatchList(academyId, userToken));
+    }
+  }
+  
+  const addWatchList = useSelector((state) => state.addWatchList);
+  const { loading , success, error } = addWatchList;
+
+  useEffect(() => {
+    if (success) {
+        window.alert('Added Course To WatchList Successfully!!!');
+    }
+  }, [success]);
+
+  
 
   return (
     <section
@@ -108,15 +129,29 @@ function Banner(props) {
 
             {
               props.academy.is_delete !== true && (
-                <button
-                  className="enroll mt-1"
-                  type="button"
-                  onClick={addToCartHandler}
-                >
-                  <FontAwesomeIcon
-                    icon={faCartPlus} />
-                    <span className="ml-1">Add To Cart</span>
-                </button>
+                <>
+                  <button
+                    className="enroll mt-1"
+                    type="button"
+                    onClick={addToCartHandler}
+                  >
+                    <FontAwesomeIcon
+                      icon={faCartPlus} />
+                      <span className="ml-1">Add To Cart</span>
+                  </button>
+
+                  <button
+                    className="enroll mt-1"
+                    type="button"
+                    onClick={addToWatchListHandler}
+                  >
+                    <FontAwesomeIcon
+                      icon={faHeart} />
+                      <span className="ml-1">Add To WatchList</span>
+                  </button>
+                  {loading && <LoadingBox></LoadingBox>}
+                  {error && <MessageBox>{error}</MessageBox>}
+                </>
               )
             }
             
