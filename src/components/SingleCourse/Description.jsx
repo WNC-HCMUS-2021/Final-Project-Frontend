@@ -7,7 +7,7 @@ export default function Description({academy}) {
   return (
     <Container className="mt-3" style={{textAlign: "left"}}>
       <Row>
-        <div className="co-12 col-md-6">
+        <div className="col-12 col-md-8">
           <>
             <div className="section-title mt-4 my-2">
               <h3 className="mb-0">
@@ -18,7 +18,7 @@ export default function Description({academy}) {
           </>
         </div>
 
-        <div className="col-12 col-md-6">
+        <div className="col-12 col-md-4">
           <div className="section-title mt-4 my-2">
             <h3 className="mb-0">
               Course Content:

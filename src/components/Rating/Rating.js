@@ -4,7 +4,7 @@ import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import "./Rating.css";
 
 export default function Rating(props) {
-  const { rate, register } = props;
+  const { rate, register, cap } = props;
   return (
     <div>
         <span className="rating">
@@ -187,9 +187,13 @@ export default function Rating(props) {
               )
             }
         </span>
-        <span className="student">
+        {cap ? (
+          <span>{cap}</span>
+        ) : (
+          <span className="student">
             ({register + " students"})
-        </span>
+          </span>
+        )}
     </div>
     
   );

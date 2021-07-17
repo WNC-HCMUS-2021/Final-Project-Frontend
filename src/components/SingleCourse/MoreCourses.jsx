@@ -12,11 +12,11 @@ import Carousel from "react-multi-carousel";
 
 export default function MoreCourses({academy}) {
   const academyId = academy.academy_id;
-  console.log("academyId: " + academyId);
+  // console.log("academyId: " + academyId);
   const dispatch = useDispatch();
   const academyListRelated = useSelector((state) => state.academyListRelated);
   const { loading, error, academys } = academyListRelated; 
-  console.log(academyListRelated);
+  // console.log(academyListRelated);
   useEffect(() => {
     dispatch(listRelatedAcademys(academyId));
   }, [dispatch, academyId]);
@@ -48,10 +48,10 @@ export default function MoreCourses({academy}) {
       ) : (
         <>
           <div className="course-item">
-          <h5 className="mb-2" style={{float: 'left'}}> 
+          <h3 className="mb-2" style={{float: 'left'}}> 
             <Icons icon="fire" className="mr-2 text-danger" />
             Most-sold related courses:
-          </h5>
+          </h3>
           <Carousel
             ssr
             responsive={responsive}

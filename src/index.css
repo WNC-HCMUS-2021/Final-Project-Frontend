@@ -25,3 +25,24 @@ code {
 .pagination a.active {
   font-weight: bolder;
 }
+.left {
+  text-align: left;
+}
+
+/* Form */
+.form {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+.form > div {
+  display: flex;
+  flex-direction: column;
+  /* margin: 1rem; */
+}
+.form label {
+  margin: 0.5rem 0;
+}
+
+button.primary {
+  background-color: #f0c040;
+}
