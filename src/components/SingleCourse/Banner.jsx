@@ -32,7 +32,7 @@ function Banner(props) {
         <div className="row pt-5 d-flex" style={{ zIndex: 1 }}>
           <div className="col-12 col-md-6">
             <div className="shape-before">
-              <Link to={`/coursevideo`}>
+              <Link to={`/coursevideo/academy/${academyId}`}>
                 <Card.Img
                   className="shadow-lg"
                   style={{
@@ -46,13 +46,13 @@ function Banner(props) {
           </div>
           <div className="col-12 col-md-6 pl-lg-4 pr-lg-3" style={{textAlign: "left"}}>
             <div className="title-heading">
-              <Link to="/coursevideo">
-              <h1
-                className="h2 my-4 mt-md-0 text-shadow"
-                style={{ color: "#fff" }}
-              >
-                {props.academy.academy_name}
-              </h1>
+              <Link to={`/coursevideo/academy/${academyId}`}> 
+                <h1
+                  className="h2 my-4 mt-md-0 text-shadow"
+                  style={{ color: "#fff" }}
+                >
+                  {props.academy.academy_name}
+                </h1>
               </Link>
               <p
                 className="mb-1 mr-5"

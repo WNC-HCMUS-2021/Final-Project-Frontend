@@ -17,7 +17,7 @@ export default function CardDescription({outlineDetail}) {
           <h6 className="mb-0 text-shadow">
             <strong>{outlineDetail.teacher.name}</strong>
           </h6>
-          <p className="small my-0 text-muted">
+          <p className="small my-0 text-muted left">
             Web developer
           </p>
         </div>

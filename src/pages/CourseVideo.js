@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
-import Video from "./Video";
-import CardDescription from "./CardDescription";
-import CourseMap from "../SingleCourse/CourseMap";
+import Video from "../components/CourseVideo/Video";
+import CardDescription from "../components/CourseVideo/CardDescription";
+import CourseMap from "../components/SingleCourse/CourseMap";
 import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from 'react-router-dom';
-import { detailAcademyOutline } from "../actions/academyActions";
+import { detailAcademyOutline } from "../components/actions/academyActions";
 import { useDispatch, useSelector } from 'react-redux';
-import LoadingBox from "../LoadingBox";
-import MessageBox from "../MessageBox";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
 
 const CourseVideo = () => {
-  const { academyId = "", outlineId = "" } = useParams();
-  console.log(academyId);
-  console.log(outlineId);
+  const { academyId = "", outlineId = "1" } = useParams();
 
   const dispatch = useDispatch();
 
@@ -21,8 +19,6 @@ const CourseVideo = () => {
   useEffect(() => {
       dispatch(detailAcademyOutline(outlineId));
   }, [dispatch, outlineId]);
-
-  console.log(outline);
 
   return (
     <>
