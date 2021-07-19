@@ -28,11 +28,12 @@ function CourseReview({academy}) {
     }, [dispatch, academyId]);
 
     useEffect(() => {
+        dispatch({ type: ACADEMY_REVIEW_CREATE_RESET });
+
         if (success) {
             window.alert('Course Review Submitted Successfully!!!');
             setPoint('');
             setComment('');
-            dispatch({ type: ACADEMY_REVIEW_CREATE_RESET });
             dispatch(detailsAcademy(academyId));
         }
     }, [dispatch, academyId, success]);

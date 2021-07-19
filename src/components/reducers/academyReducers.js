@@ -41,7 +41,8 @@ import { ACADEMY_CATEGORY_LIST_FAIL,
   
   ACADEMY_OUTLINE_FAIL, 
   ACADEMY_OUTLINE_REQUEST, 
-  ACADEMY_OUTLINE_SUCCESS } from "../../constants/academyConstants";
+  ACADEMY_OUTLINE_SUCCESS, 
+  ACADEMY_WATCHLIST_CREATE_RESET} from "../../constants/academyConstants";
 
 export const academyListReducer = (state = { loading: true, academys: [] }, action) => {
     switch (action.type) {
@@ -196,6 +197,8 @@ export const addWatchListReducer = (state = { }, action) => {
       return { loading: false, success: true };
     case ACADEMY_WATCHLIST_CREATE_FAIL:
       return { loading: false, error: action.payload };
+    case ACADEMY_WATCHLIST_CREATE_RESET:
+      return {};
     default:
       return state; 
   }

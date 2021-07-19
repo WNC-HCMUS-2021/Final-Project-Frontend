@@ -10,6 +10,7 @@ import Rating from "../Rating/Rating";
 import { addToWatchList } from "../actions/academyActions";
 import LoadingBox from "../LoadingBox";
 import MessageBox from "../MessageBox";
+import { ACADEMY_WATCHLIST_CREATE_RESET } from "../../constants/academyConstants"
 
 function Banner(props) {
   // const pic_url = author.user_pic ? author.user_pic : "/img/noPic.jpg";
@@ -34,10 +35,12 @@ function Banner(props) {
   const { loading , success, error } = addWatchList;
 
   useEffect(() => {
+    dispatch({ type: ACADEMY_WATCHLIST_CREATE_RESET });
+
     if (success) {
         window.alert('Added Course To WatchList Successfully!!!');
     }
-  }, [success]);
+  }, [success, dispatch]);
 
   
 

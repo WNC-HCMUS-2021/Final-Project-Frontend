@@ -81,7 +81,7 @@ const NavbarPart = (props) => {
               </NavLink>
             </div>
             <div className="mr-3 mt-2">
-              <NavLink to="/coursesearch" style={{ color: "gray" }}>
+              <NavLink to="/search/keyword/all" style={{ color: "gray" }}>
                 Courses
               </NavLink>
             </div>
