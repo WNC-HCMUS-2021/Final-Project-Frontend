@@ -86,6 +86,20 @@ export const listSearchAcademys = ({ keyword = '', order = '', pageNumber = '' }
         if (order === "") {
             res = await axios.get(`http://localhost:5000/api/academy/search?keyword=${keyword}&page=${pageNumber}&limit=3`);
         }
+        if (keyword === "all") {
+            if (order === "lowtohigh") {
+                res = await axios.get(`http://localhost:5000/api/academy/search?keyword=&price=asc&page=${pageNumber}&limit=3`);
+            }
+            if (order === "hightolow") {
+                res = await axios.get(`http://localhost:5000/api/academy/search?keyword=&price=desc&page=${pageNumber}&limit=3`);
+            }
+            if (order === "toprated") {
+                res = await axios.get(`http://localhost:5000/api/academy/search?keyword=&rate=desc&page=${pageNumber}&limit=3`);
+            }
+            else {
+                res = await axios.get(`http://localhost:5000/api/academy/search?keyword=&page=${pageNumber}&limit=3`);
+            }
+        }
         dispatch({
             type: ACADEMY_LIST_SEARCH_SUCCESS, 
             payload: res.data.data
