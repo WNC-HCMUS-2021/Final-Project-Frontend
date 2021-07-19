@@ -97,7 +97,7 @@ function Banner(props) {
               <img
                 alt="author name"
                 className="avatar avatar-md-sm rounded-circle shadow"
-                src="https://firebasestorage.googleapis.com/v0/b/tu-academia.appspot.com/o/user-pics%2F366-tomas_vasquez?alt=media&token=61a8fc1e-936a-4cdb-a71e-ecb9063f42b2"
+                src= {props.academy.teacher.avatar? props.academy.teacher.avatar: "https://firebasestorage.googleapis.com/v0/b/tu-academia.appspot.com/o/user-pics%2F366-tomas_vasquez?alt=media&token=61a8fc1e-936a-4cdb-a71e-ecb9063f42b2"} 
                 style={{height: "40px", width: "40px"}}
               />
               <div className="ml-2">
