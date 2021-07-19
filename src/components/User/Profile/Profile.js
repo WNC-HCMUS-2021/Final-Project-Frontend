@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Profile.css";
 import {
   Button,
@@ -32,6 +32,8 @@ const Profile = (props) => {
     reset: reset2,
     formState: { errors: errors2 },
   } = useForm();
+
+  const inputRef = useRef(null);
 
   const [errorMessage, setErrorMessage] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
@@ -169,6 +171,32 @@ const Profile = (props) => {
     setErrorMessage(false);
   };
 
+  function handleFileUpload(event) {
+    const reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+
+    const mimeType = event.target.files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      alert("Only images are supported.");
+      return;
+    }
+
+    reader.onload = async (_event) => {
+      try {
+        await api.changeAvatar({ avatar: reader.result.toString() });
+        window.location.reload();
+      } catch (err) {
+        if (err.response) {
+          console.log(err.response.data.message);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log("Error", err.message);
+        }
+      }
+    };
+  }
+
   return (
     <Container fluid style={{ width: "85%" }}>
       {!(profile && myAcademy && watchList) ? (
@@ -180,11 +208,31 @@ const Profile = (props) => {
               <div className="d-flex justify-content-center">
                 <div className="profile-image">
                   <img
-                    src="https://cdn.nohat.cc/thumb/f/720/comvecteezy420553.jpg"
+                    src={
+                      profile.avatar
+                        ? profile.avatar
+                        : "https://cdn.nohat.cc/thumb/f/720/comvecteezy420553.jpg"
+                    }
                     alt="Avatar"
                     style={{ height: "230px", width: "230px" }}
                   />
-                  <div className="btn-update">Update avatar</div>
+                  <div
+                    className="btn-update"
+                    onClick={(e) => {
+                      inputRef.current.click();
+                    }}
+                  >
+                    Update avatar
+                  </div>
+
+                  <input
+                    ref={inputRef}
+                    onChange={handleFileUpload}
+                    type="file"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    multiple={false}
+                  />
                 </div>
               </div>
 

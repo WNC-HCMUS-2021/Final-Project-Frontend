@@ -31,6 +31,9 @@ const api = {
   removeFromWatchList: (id) => {
     return axiosInstance.delete(`user/watch-list/${id}`);
   },
+  changeAvatar: (avatar) => {
+    return axiosInstance.post(`user/avatar`, avatar);
+  },
 };
 
 export default api;
