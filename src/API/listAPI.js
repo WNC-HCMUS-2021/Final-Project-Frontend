@@ -22,6 +22,15 @@ const api = {
   resendConfirmEmail: () => {
     return axiosInstance.get("user/resend-confirm-email");
   },
+  myAcademy: () => {
+    return axiosInstance.get("user/my-academy");
+  },
+  watchList: () => {
+    return axiosInstance.get("user/watch-list");
+  },
+  removeFromWatchList: (id) => {
+    return axiosInstance.delete(`user/watch-list/${id}`);
+  },
 };
 
 export default api;

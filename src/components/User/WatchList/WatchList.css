@@ -1,0 +1,13 @@
+.card-container-courses {
+  float: left;
+}
+.card-container-courses .card-img {
+  max-height: 110px;
+}
+.card-container-courses .card-watch-list {
+  width: 208px;
+  height: 340px;
+  margin: 15px 0px;
+  padding-bottom: 10px;
+  box-shadow: 3px 3px 5px 6px #ccc;
+}
