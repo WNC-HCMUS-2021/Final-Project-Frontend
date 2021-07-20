@@ -15,8 +15,6 @@ import moment from "moment";
 import { useForm } from "react-hook-form";
 import api from "../../../API/listAPI";
 import LoadingBox from "../../LoadingBox";
-import MyCourses from "../MyCourses/MyCourses";
-import WatchList from "../WatchList/WatchList";
 
 const Profile = (props) => {
   const {
@@ -39,10 +37,6 @@ const Profile = (props) => {
   const [successMessage, setSuccessMessage] = useState(false);
 
   let [profile, setProfile] = useState();
-
-  let [myAcademy, setMyAcademy] = useState();
-
-  let [watchList, setWatchList] = useState();
 
   useEffect(() => {
     const getProfile = async () => {
@@ -67,42 +61,7 @@ const Profile = (props) => {
       }
     };
 
-    const getMyAcademy = async () => {
-      try {
-        let res = await api.myAcademy();
-        if (res.data) {
-          setMyAcademy(res.data.data);
-        }
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data.message);
-        } else if (err.request) {
-          console.log(err.request);
-        } else {
-          console.log("Error", err.message);
-        }
-      }
-    };
-
-    const getWatchList = async () => {
-      try {
-        let res = await api.watchList();
-        if (res.data) {
-          setWatchList(res.data.data);
-        }
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data.message);
-        } else if (err.request) {
-          console.log(err.request);
-        } else {
-          console.log("Error", err.message);
-        }
-      }
-    };
     getProfile();
-    getMyAcademy();
-    getWatchList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -199,7 +158,7 @@ const Profile = (props) => {
 
   return (
     <Container fluid style={{ width: "85%" }}>
-      {!(profile && myAcademy && watchList) ? (
+      {!profile ? (
         <LoadingBox />
       ) : (
         <Card border="secondary px-2 py-3">
@@ -289,32 +248,6 @@ const Profile = (props) => {
                       <Col md={8}>
                         <p>{profile.phone_number}</p>
                       </Col>
-                    </Row>
-                  </div>
-                </Tab>
-                <Tab eventKey="my-courses" title="My courses">
-                  {myAcademy.length === 0 ? (
-                    <h3>Không có khoá học nào</h3>
-                  ) : (
-                    <div className="profile-tab">
-                      <Row>
-                        {myAcademy.map((academy) => (
-                          <Col md={3} key={academy.academy_id}>
-                            <MyCourses academy={academy} />
-                          </Col>
-                        ))}
-                      </Row>
-                    </div>
-                  )}
-                </Tab>
-                <Tab eventKey="watch-list" title="Watch list">
-                  <div className="profile-tab">
-                    <Row>
-                      {watchList.map((academy) => (
-                        <Col md={3} key={academy.academy_id}>
-                          <WatchList academy={academy} />
-                        </Col>
-                      ))}
                     </Row>
                   </div>
                 </Tab>
