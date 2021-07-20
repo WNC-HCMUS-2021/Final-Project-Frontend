@@ -1,65 +1,64 @@
-.card-container-courses{
-  float:left;
+.card-container-courses {
+  float: left;
 }
 .card-container-courses .card-img {
   max-height: 110px;
 }
-.card-container-courses .card-course{
+.card-container-courses .card-course {
   width: 258px;
-  height: 310px;
+  height: 320px;
   margin: 15px 0px;
   padding-bottom: 10px;
   box-shadow: 3px 3px 5px 6px #ccc;
 }
-.card-container-courses .card-title-course{
+.card-container-courses .card-title-course {
   text-align: center;
 }
-.instructor-course{
-  text-align:center;
+.instructor-course {
+  text-align: center;
   font-weight: bold;
 }
-.price-course{
-  font-weight:bold;
+.price-course {
+  font-weight: bold;
 }
-.duration-course,.level-course{
+.duration-course,
+.level-course {
   font-weight: 600;
-  color:gray;
+  color: gray;
 }
-.star-icon-course,.rating-course{
-  color:#EB8A2F;
-  font-weight:bold;
+.star-icon-course,
+.rating-course {
+  color: #eb8a2f;
+  font-weight: bold;
 }
-.student-course{
-  float:right;
+.student-course {
+  float: right;
 }
-.badge-course{
-  background-color: #FFE799;
-  color:rgb(27, 25, 25);
+.badge-course {
+  background-color: #ffe799;
+  color: rgb(27, 25, 25);
 }
 
-.badge-best-seller{
-  background-color: #FFE799;
-  color:rgb(27, 25, 25);
+.badge-best-seller {
+  background-color: #ffe799;
+  color: rgb(27, 25, 25);
   border-radius: 5px;
 }
-.enroll-course{
+.enroll-course {
   width: 60%;
   margin: auto;
   border-radius: 25px;
-  background-color: #EB8A2F;
+  background-color: #eb8a2f;
   display: flex;
   justify-content: center;
 }
-.price-course-list{
+.price-course-list {
   text-align: center;
   /* font-weight:bold; */
 }
-.price-discount-course-list{
-  font-weight:bold;
+.price-discount-course-list {
+  font-weight: bold;
 }
-.price-original-course-list{
+.price-original-course-list {
   text-decoration: line-through;
 }
-
-
-

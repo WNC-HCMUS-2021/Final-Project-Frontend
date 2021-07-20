@@ -113,6 +113,12 @@ const NavbarPart = (props) => {
                 <NavDropdown.Item onClick={() => history.push("/profile")}>
                   Profile
                 </NavDropdown.Item>
+                <NavDropdown.Item onClick={() => history.push("/my-academy")}>
+                  My Academy
+                </NavDropdown.Item>
+                <NavDropdown.Item onClick={() => history.push("/watch-list")}>
+                  Watch list
+                </NavDropdown.Item>
                 <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
               </NavDropdown>
             ) : (

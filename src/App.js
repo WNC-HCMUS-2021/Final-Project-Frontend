@@ -21,7 +21,8 @@ import MyProfile from "./pages/MyProfile";
 import CheckEmailPage from "./pages/CheckEmailPage";
 import ConfirmEmail from "./components/User/ConfirmEmail/ConfirmEmail";
 import CourseVideo from "./pages/CourseVideo";
-
+import MyAcademy from "./pages/MyAcademy";
+import MyWatchList from "./pages/MyWatchList";
 
 function App() {
   const [isLogin, setIsLogin] = useState(localStorage.username ? true : false);
@@ -94,6 +95,14 @@ function App() {
           <ProtectedRouteUser
             path="/profile"
             component={MyProfile}
+          ></ProtectedRouteUser>
+          <ProtectedRouteUser
+            path="/my-academy"
+            component={MyAcademy}
+          ></ProtectedRouteUser>
+          <ProtectedRouteUser
+            path="/watch-list"
+            component={MyWatchList}
           ></ProtectedRouteUser>
           <Route exact path="/">
             <Home />

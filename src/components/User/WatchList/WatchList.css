@@ -1,13 +1,56 @@
-.card-container-courses {
+.card-container {
   float: left;
 }
-.card-container-courses .card-img {
-  max-height: 110px;
-}
-.card-container-courses .card-watch-list {
-  width: 208px;
-  height: 340px;
+.card {
   margin: 15px 0px;
-  padding-bottom: 10px;
-  box-shadow: 3px 3px 5px 6px #ccc;
+  padding-bottom: 5px;
+  border: none;
+}
+.card-title {
+  text-align: left;
+}
+.instructor {
+  text-align: left;
+  font-weight: bold;
+  font-weight: 300;
+  color: gray;
+}
+.price-course-list {
+  text-align: center;
+  /* font-weight:bold; */
+}
+.price-discount-course-list {
+  font-weight: bold;
+}
+.price-original-course-list {
+  text-decoration: line-through;
+}
+.duration,
+.level {
+  font-weight: 300;
+  color: gray;
+}
+.star-icon,
+.rating {
+  color: #eb8a2f;
+  font-weight: bold;
+}
+.student {
+  margin: 5px;
+  color: gray;
+}
+.badge-best-seller {
+  background-color: #ffe799;
+  color: rgb(27, 25, 25);
+  border-radius: 5px;
+}
+
+.badge-hot {
+  background-color: hotpink;
+  color: rgb(27, 25, 25);
+  border-radius: 5px;
+}
+
+.card-body .card-img {
+  max-height: 130px;
 }
