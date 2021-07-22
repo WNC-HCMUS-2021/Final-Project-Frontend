@@ -11,14 +11,15 @@ import MessageBox from "../components/MessageBox";
 
 const CourseVideo = () => {
   const { academyId = "", outlineId = "1" } = useParams();
+  const userToken = localStorage.token;
 
   const dispatch = useDispatch();
 
   const outlineDetail = useSelector((state) => state.outlineDetail);
   const { loading, error, outline } = outlineDetail;
   useEffect(() => {
-      dispatch(detailAcademyOutline(outlineId));
-  }, [dispatch, outlineId]);
+      dispatch(detailAcademyOutline(outlineId, userToken));
+  }, [dispatch, outlineId, userToken]);
 
   return (
     <>

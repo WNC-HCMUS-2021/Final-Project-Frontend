@@ -190,14 +190,18 @@ export const listOutlineAcademy = (academyId) => async (dispatch) => {
     }
 }
 
-export const detailAcademyOutline = (outlineId) => async (dispatch) => {
+export const detailAcademyOutline = (outlineId, userToken) => async (dispatch) => {
     dispatch({ type: ACADEMY_OUTLINE_DETAIL_REQUEST, payload: outlineId });
 
     try {
-      const res = await axios.get('http://localhost:5000/api/outline/detail/' + outlineId);
-      dispatch({ type: ACADEMY_OUTLINE_DETAIL_SUCCESS, payload: res.data.data });
+        const res = await axios.get('http://localhost:5000/api/outline/detail/' + outlineId,
+            {
+                headers: { "x-access-token": userToken },
+            }
+        );
+        dispatch({ type: ACADEMY_OUTLINE_DETAIL_SUCCESS, payload: res.data.data });
     } catch (err) {
-      dispatch({ type: ACADEMY_OUTLINE_DETAIL_FAIL, payload: err.message });
+        dispatch({ type: ACADEMY_OUTLINE_DETAIL_FAIL, payload: err.message });
     }
 };
       
