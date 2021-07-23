@@ -1,13 +1,16 @@
 import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-// import "./WatchList.css";
+import { Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import Rating from "../../Rating/Rating";
+import { useHistory } from "react-router-dom";
 import api from "../../../API/listAPI";
 
 const WatchList = ({ academy, setWatchList, watchList }) => {
+  const history = useHistory();
+  function linkTo(academy_id) {
+    history.push(`/coursedetail/${academy_id}`);
+  }
+
   async function removeWatchList(id) {
     try {
       await api.removeFromWatchList(id);
@@ -26,49 +29,42 @@ const WatchList = ({ academy, setWatchList, watchList }) => {
   return (
     <>
       <Container key={academy.academy_id}>
-        <div className="card border-top-0 border-right-0 border-left-0">
+        <div className="card" key={academy.academy}>
           <div className="card-body">
             <Row>
-              <Col xs={3}>
-                <Link to={`/coursedetail/${academy.academy_id}`}>
-                  <img
-                    className="card-img"
-                    src={academy.avatar || "/no-image.png"}
-                    alt=""
-                  />
-                </Link>
+              <Col
+                xs={3}
+                onClick={() => linkTo(academy.academy_id)}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  className="card-img"
+                  src={academy.avatar}
+                  style={{ maxWidth: "150px", maxHeight: "100px" }}
+                  alt=""
+                />
               </Col>
-              <Col xs={7} style={{ textAlign: "left" }}>
+              <Col
+                xs={6}
+                style={{ textAlign: "left", cursor: "pointer" }}
+                onClick={() => linkTo(academy.academy_id)}
+              >
                 <div>
-                  <Link
-                    to={`/coursedetail/${academy.academy_id}`}
-                    style={{ color: "black" }}
-                  >
-                    <b className="card-title">{academy.academy_name}</b>
-                  </Link>
-                </div>
-                <div className="short-description">
-                  {academy.description_short}
+                  <b className="card-title">{academy.academy_name}</b>
                 </div>
                 <div className="instructor">
                   <FontAwesomeIcon className="user-icon" icon={faUserAlt} />
-                  {/* {academy.teacher.name} */}
                   {" " + academy.teacher.name}
                 </div>
-                <Rating rate={academy.rate} register={academy.register} />
-                {academy.register >= 5 ? (
-                  <button className="badge-best-seller">
-                    <b>Best-seller</b>
-                  </button>
-                ) : null}
               </Col>
-              <Col xs={2}>
-                <Button
-                  variant="danger"
+              <Col xs={3}>
+                <button
                   onClick={() => removeWatchList(academy.academy_id)}
+                  type="button"
+                  className="btn btn-outline-danger"
                 >
-                  Remove
-                </Button>
+                  Remove From Watch List
+                </button>
               </Col>
             </Row>
           </div>

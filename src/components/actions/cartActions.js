@@ -42,6 +42,6 @@ export const registerFromCart = (userToken, listAcademy) => async (dispatch, get
         dispatch({ type: CART_EMPTY });
         localStorage.removeItem('cartItems');
     } catch (error) {
-        dispatch({ type: CART_REGISTER_ITEMS_FAIL, payload: error.message });
+        dispatch({ type: CART_REGISTER_ITEMS_FAIL, payload: error.response.data.message });
     }
 };
