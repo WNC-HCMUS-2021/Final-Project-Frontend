@@ -64,7 +64,7 @@ export const listAcademys = async (dispatch) => {
             }
         });
     } catch (err) {
-        dispatch({type: ACADEMY_LIST_FAIL, payload: err.message });
+        dispatch({type: ACADEMY_LIST_FAIL, payload: err.response.data.message });
     }
 }
 
@@ -105,7 +105,7 @@ export const listSearchAcademys = ({ keyword = '', order = '', pageNumber = '' }
             payload: res.data.data
         });
     } catch (err) {
-        dispatch({type: ACADEMY_LIST_SEARCH_FAIL, payload: err.message });
+        dispatch({type: ACADEMY_LIST_SEARCH_FAIL, payload: err.response.data.message });
     }
 }
 
@@ -133,7 +133,7 @@ export const listSearchCategoryAcademys = (categoryId, order, pageNumber) => asy
             payload: res.data.data
         });
     } catch (err) {
-        dispatch({type: ACADEMY_LIST_SEARCH_CATEGORY_FAIL, payload: err.message });
+        dispatch({type: ACADEMY_LIST_SEARCH_CATEGORY_FAIL, payload: err.response.data.message });
     }
 }
 
@@ -156,7 +156,7 @@ export const detailsAcademy = (academyId) => async (dispatch) => {
       const res = await axios.get('http://localhost:5000/api/academy/detail/' + academyId);
       dispatch({ type: ACADEMY_DETAILS_SUCCESS, payload: res.data.data });
     } catch (err) {
-      dispatch({ type: ACADEMY_DETAILS_FAIL, payload: err.message });
+      dispatch({ type: ACADEMY_DETAILS_FAIL, payload: err.response.data.message });
     }
 };
 
@@ -171,7 +171,7 @@ export const listRelatedAcademys = (academyId) => async (dispatch) => {
             payload: res.data.data
         });
     } catch (err) {
-        dispatch({type: ACADEMY_LIST_RELATED_FAIL, payload: err.message });
+        dispatch({type: ACADEMY_LIST_RELATED_FAIL, payload: err.response.data.message });
     }
 }
 
@@ -186,7 +186,7 @@ export const listOutlineAcademy = (academyId) => async (dispatch) => {
             payload: res.data.data
         });
     } catch (err) {
-        dispatch({type: ACADEMY_OUTLINE_FAIL, payload: err.message });
+        dispatch({type: ACADEMY_OUTLINE_FAIL, payload: err.response.data.message });
     }
 }
 
@@ -201,7 +201,7 @@ export const detailAcademyOutline = (outlineId, userToken) => async (dispatch) =
         );
         dispatch({ type: ACADEMY_OUTLINE_DETAIL_SUCCESS, payload: res.data.data });
     } catch (err) {
-        dispatch({ type: ACADEMY_OUTLINE_DETAIL_FAIL, payload: err.message });
+        dispatch({ type: ACADEMY_OUTLINE_DETAIL_FAIL, payload: err.response.data.message });
     }
 };
       
@@ -259,6 +259,6 @@ export const getReviews = (academyId) => async (dispatch) => {
       const res = await axios.get(`http://localhost:5000/api/academy/${academyId}/rate`);
       dispatch({ type: ACADEMY_REVIEW_GET_SUCCESS, payload: res.data.data });
     } catch (err) {
-      dispatch({ type: ACADEMY_REVIEW_GET_FAIL, payload: err.message });
+      dispatch({ type: ACADEMY_REVIEW_GET_FAIL, payload: err.response.data.message });
     }
 };

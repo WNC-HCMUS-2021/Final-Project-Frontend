@@ -46,7 +46,11 @@ axiosInstance.interceptors.response.use(
       } else {
         console.log("Refresh token is revoke");
         window.location.href = "/login/";
+        localStorage.clear();
       }
+    } else {
+      window.location.href = "/login/";
+      localStorage.clear();
     }
 
     // specific error handling done elsewhere

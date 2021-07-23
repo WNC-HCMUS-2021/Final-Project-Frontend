@@ -90,6 +90,20 @@ const NavbarPart = (props) => {
                 Dashboard
               </NavLink>
             </div>
+            {props.isLogin ? (
+              <div className="mr-3 mt-2">
+                <NavLink to="/my-academy" style={{ color: "gray" }}>
+                  My Academy
+                </NavLink>
+              </div>
+            ) : null}
+            {props.isLogin ? (
+              <div className="mr-3 mt-2">
+                <NavLink to="/watch-list" style={{ color: "gray" }}>
+                  Watch List
+                </NavLink>
+              </div>
+            ) : null}
             <div className="mr-4 mt-2">
               <Link to="/cart" style={{ color: "gray" }}>
                 <FontAwesomeIcon className="mt-1" icon={faShoppingCart} />
@@ -112,12 +126,6 @@ const NavbarPart = (props) => {
               >
                 <NavDropdown.Item onClick={() => history.push("/profile")}>
                   Profile
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => history.push("/my-academy")}>
-                  My Academy
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => history.push("/watch-list")}>
-                  Watch list
                 </NavDropdown.Item>
                 <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
               </NavDropdown>
