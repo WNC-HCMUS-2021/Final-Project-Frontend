@@ -1,7 +1,6 @@
 import React from "react";
 import api from "../API/listAPI";
 import { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import LoadingBox from "../components/LoadingBox";
 import WatchList from "../components/User/WatchList/WatchList";
 
@@ -33,20 +32,21 @@ function MyWatchList() {
   return !watchList ? (
     <LoadingBox />
   ) : (
-    <Container>
-      <Row>
-        <Col>
-          {watchList.map((academy) => (
-            <WatchList
-              key={academy.academy_id}
-              academy={academy}
-              setWatchList={setWatchList}
-              watchList={watchList}
-            />
-          ))}
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <section style={{height: "100px", width: "100%", display: "flex", alignItems: "center", background: "black"}}>
+        <div className="container">
+            <h3 style={{color: "white", float: "left"}}>Watch List</h3>
+        </div>
+      </section>
+      {watchList.map((academy) => (
+        <WatchList
+          key={academy.academy_id}
+          academy={academy}
+          setWatchList={setWatchList}
+          watchList={watchList}
+        />
+      ))}
+    </>
   );
 }
 

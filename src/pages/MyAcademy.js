@@ -1,7 +1,6 @@
 import React from "react";
 import api from "../API/listAPI";
 import { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import LoadingBox from "../components/LoadingBox";
 import MyCourses from "../components/User/MyCourses/MyCourses";
 
@@ -33,15 +32,16 @@ function MyAcademy() {
   return !myAcademy ? (
     <LoadingBox />
   ) : (
-    <Container>
-      <Row>
-        <Col>
-          {myAcademy.map((academy) => (
-            <MyCourses key={academy.academy_id} academy={academy} />
-          ))}
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <section style={{height: "100px", width: "100%", display: "flex", alignItems: "center", background: "black"}}>
+        <div className="container">
+            <h3 style={{color: "white", float: "left"}}>My learning</h3>
+        </div>
+      </section>
+      {myAcademy.map((academy) => (
+        <MyCourses key={academy.academy_id} academy={academy} />
+      ))}
+    </>
   );
 }
 
