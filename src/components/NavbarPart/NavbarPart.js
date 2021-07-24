@@ -85,15 +85,10 @@ const NavbarPart = (props) => {
                 Courses
               </NavLink>
             </div>
-            <div className="mr-3 mt-2">
-              <NavLink to="/" style={{ color: "gray" }}>
-                Dashboard
-              </NavLink>
-            </div>
             {props.isLogin ? (
               <div className="mr-3 mt-2">
                 <NavLink to="/my-academy" style={{ color: "gray" }}>
-                  My Academy
+                  My Learning
                 </NavLink>
               </div>
             ) : null}

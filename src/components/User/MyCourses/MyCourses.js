@@ -15,7 +15,7 @@ const MyCourses = ({ academy }) => {
       <Container key={academy.academy_id}>
         <div className="card" key={academy.academy}>
           <div className="card-body">
-            <Row style={{ height: "100px" }}>
+            <Row>
               <Col
                 xs={3}
                 onClick={() => linkTo(academy.academy_id)}
