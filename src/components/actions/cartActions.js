@@ -1,47 +1,68 @@
-import axios from "axios";
-import { CART_ADD_ITEM, CART_EMPTY, CART_REGISTER_ITEMS_FAIL, CART_REGISTER_ITEMS_REQUEST, CART_REGISTER_ITEMS_SUCCESS, CART_REMOVE_ITEM } from "../../constants/cartConstants";
+import { axiosInstance } from "../../API/axiosConfig";
+
+import {
+  CART_ADD_ITEM,
+  CART_EMPTY,
+  CART_REGISTER_ITEMS_FAIL,
+  CART_REGISTER_ITEMS_REQUEST,
+  CART_REGISTER_ITEMS_SUCCESS,
+  CART_REMOVE_ITEM,
+} from "../../constants/cartConstants";
 
 export const addToCart = (academyId) => async (dispatch, getState) => {
-    const res = await axios.get(`http://localhost:5000/api/academy/detail/${academyId}`);
-    dispatch({
-        type: CART_ADD_ITEM,
-        payload: {
-            name: res.data.data.academy_name,
-            avatar: res.data.data.avatar,
-            price_discount: res.data.data.price_discount,
-            price: res.data.data.price,
-            academy: res.data.data.academy_id,
-            teacher: res.data.data.teacher
-        }
-    });
-    localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+  const res = await axiosInstance.get(`academy/detail/${academyId}`);
+  dispatch({
+    type: CART_ADD_ITEM,
+    payload: {
+      name: res.data.data.academy_name,
+      avatar: res.data.data.avatar,
+      price_discount: res.data.data.price_discount,
+      price: res.data.data.price,
+      academy: res.data.data.academy_id,
+      teacher: res.data.data.teacher,
+    },
+  });
+  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
 };
 
 export const removeFromCart = (academyId) => async (dispatch, getState) => {
-    dispatch({
-        type: CART_REMOVE_ITEM,
-        payload: academyId
-    });
-    localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+  dispatch({
+    type: CART_REMOVE_ITEM,
+    payload: academyId,
+  });
+  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
 };
 
-export const registerFromCart = (userToken, listAcademy) => async (dispatch, getState) => {
+export const registerFromCart =
+  (userToken, listAcademy) => async (dispatch, getState) => {
     dispatch({ type: CART_REGISTER_ITEMS_REQUEST });
     try {
-        const { data } = await axios.post(
-            "http://localhost:5000/api/user/register-academy",
-            listAcademy,
-            {
-                headers: { "x-access-token": userToken},
-            }
-        );
+      const res = await axiosInstance.post(
+        "user/register-academy",
+        listAcademy
+      );
+
+      if (res.status === 200) {
         dispatch({
-            type: CART_REGISTER_ITEMS_SUCCESS,
-            payload: data.message,
+          type: CART_REGISTER_ITEMS_SUCCESS,
+          payload: res.data.message,
         });
         dispatch({ type: CART_EMPTY });
-        localStorage.removeItem('cartItems');
+        localStorage.removeItem("cartItems");
+      }
+
+      dispatch({
+        type: CART_REGISTER_ITEMS_FAIL,
+        payload: res.response.data.message,
+      });
     } catch (error) {
-        dispatch({ type: CART_REGISTER_ITEMS_FAIL, payload: error.response.data.message });
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({
+        type: CART_REGISTER_ITEMS_FAIL,
+        payload: message,
+      });
     }
-};
+  };
