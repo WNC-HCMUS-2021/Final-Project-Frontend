@@ -40,6 +40,10 @@ const MyCourses = ({ academy }) => {
                   <FontAwesomeIcon className="user-icon" icon={faUserAlt} />
                   {" " + academy.teacher.name}
                 </div>
+                <div className="instructor">
+                  Status:{" "}
+                  {academy.status ? "Đã Hoàn Thành" : " Chưa hoàn thành"}
+                </div>
               </Col>
             </Row>
           </div>
