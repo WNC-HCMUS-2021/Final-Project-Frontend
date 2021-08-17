@@ -10,6 +10,7 @@ function MyAcademy() {
     const getMyAcademy = async () => {
       try {
         let res = await api.myAcademy();
+        console.log(res);
         if (res.data) {
           setMyAcademy(res.data.data);
         }
@@ -33,9 +34,17 @@ function MyAcademy() {
     <LoadingBox />
   ) : (
     <>
-      <section style={{height: "100px", width: "100%", display: "flex", alignItems: "center", background: "black"}}>
+      <section
+        style={{
+          height: "100px",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          background: "black",
+        }}
+      >
         <div className="container">
-            <h3 style={{color: "white", float: "left"}}>My learning</h3>
+          <h3 style={{ color: "white", float: "left" }}>My learning</h3>
         </div>
       </section>
       {myAcademy.map((academy) => (
