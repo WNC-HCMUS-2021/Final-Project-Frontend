@@ -42,7 +42,9 @@ const MyCourses = ({ academy }) => {
                 </div>
                 <div className="instructor">
                   Status:{" "}
-                  {academy.status == 1 ? "Đã Hoàn Thành" : " Chưa hoàn thành"}
+                  {academy.status === "1"
+                    ? "Đã Hoàn Thành"
+                    : " Chưa hoàn thành"}
                 </div>
               </Col>
             </Row>

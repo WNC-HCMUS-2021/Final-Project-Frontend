@@ -126,6 +126,11 @@ const NavbarPart = (props) => {
               </NavDropdown>
             ) : (
               <div className="mr-2">
+                <Link className="mr-3" to="/signup">
+                  <Button className="pl-5 pr-5" variant="dark">
+                    SignUp
+                  </Button>
+                </Link>
                 <Link to="/login">
                   <Button className="pl-5 pr-5" variant="outline-secondary">
                     Login
